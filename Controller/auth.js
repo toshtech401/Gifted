@@ -19,7 +19,7 @@ const SignUp = async (req,res)=>{
     if(password !== confirmPassword){
         return res.json({error: 'Password do not match'})
     }
-    if(!['weekly', 'monthly'].includes(planType)){
+    if(!['Weekly', 'Monthly'].includes(planType)){
         return res.json({error: 'Invalid plan type'})
     }
     const existingUser = await UserModel.findOne({email})
@@ -33,14 +33,13 @@ const SignUp = async (req,res)=>{
         email:email,
         username:username,
         password:hashedPassword,
-        isAdmin:false,
         planType,
     })
-    UserModel.register(newUser, password, function(){
+    UserModel.register(newUser, password, function(err){
         if(err){
             console.log(err);
         }
-        password.authenticate('local')(req,res, function(err){
+        passport.authenticate('local')(req,res, function(err){
             res.json({msg: 'Signed Up Successfully'})
         })
     })

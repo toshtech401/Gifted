@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const passport = require('passport')
+const session = require('express-session')
 const passportLocalMongoose = require('passport-local-mongoose')
 const {Schema, model} = mongoose
 const userSchema = new Schema({
@@ -15,8 +16,8 @@ const userSchema = new Schema({
         type:String,
         required:true
     },
-    userType:{
-        type:Object,
+    planType:{
+        type:String,
         enum:["Weekly", "Monthly"],
         required:true
     },
