@@ -29,6 +29,14 @@ const userSchema = new Schema({
         type:Object,
         default:{}
     },
+    cp: {
+        type:Number,
+        default:0
+    },
+    course_access_point:{
+        type:Number,
+        default:0
+    },
     isAdmin:{
         type:Boolean,
         default:false
