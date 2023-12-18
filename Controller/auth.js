@@ -7,23 +7,12 @@ const passport = require('passport');
 const UserModel = require('../Model/User');
 const referralModel = require('../Model/referral')
 const planModel = require('../Model/Plan');
+const Wallet = require("../Model/Wallet");
 
 const CreateAccount = async (req, res) => {
-    const createPlan = async (planType) => {
-        const prices = {
-            weekly: 2400,
-            monthly: 4600
-        };
-    
-        if (prices[planType]) {
-            await planModel.create({
-                plan_type: planType,
-                price: prices[planType]
-            });
-        }
-    };
-    const { plan_type, username, password, email, confirmPassword } = req.body;
 
+    const { plan_type, username, password, email, confirmPassword } = req.body;
+    const {ref} = req.query;
     try {
         if (!plan_type) {
             return res.json({ error: 'Plan Type is required to continue!' });
@@ -45,28 +34,29 @@ const CreateAccount = async (req, res) => {
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(req.body.password, salt);
 
+        const referrer = await UserModel.findOne({referralCode: ref})
+        if(!referrer){
+
         const newUser = new UserModel({
             email,
             username,
             password: hashedPassword,
-            confirmPassword,
             plan_type,
-            referralCode:req.user,
+            referralCode:username,
             isPaid: true
         });
 
-        const createReferral = (referrer, referred) => {
-            return new referralModel({
-                referrer: referrer._id,
-                referred: referred._id,
-                paymentMade: false
-            });
-        };
+        const userWallet = new Wallet({
+            user: newUser._id,
+          });
+          userWallet
+          .save()
+          .then()
+          .catch((error)=>{
+            next(error);
+          });
 
-        const currentDate = Date.now();
-        const nextPaymentDate = await calculateNextPayment(plan_type.name, currentDate);
-
-        UserModel.register(newUser, password, function(err){
+        return UserModel.register(newUser, password, function(err){
                     if(err){
                         console.log(err);
                     }
@@ -74,10 +64,65 @@ const CreateAccount = async (req, res) => {
                         res.json({msg: 'Signed Up Successfully'})
                     })
                 })
+            }else{
+                const newUser = new UserModel({
+                    email,
+                    username,
+                    password: hashedPassword,
+                    plan_type,
+                    referralCode:username,
+                    isPaid: true
+                });
+
+                 await referralModel.create({
+                    referrer: referrer._id,
+                    referred: newUser._id,
+                    paymentMade: false,
+                  });
+
+                  const commission = await referralModel.findOne({referrer : referrer._id});
+
+                  if(commission){
+                    commission.referralCommission +=200;
+                    commission.save()
+                    .then()
+                    .catch((err)=>{
+                        next(err)
+                    })
+                  }
+
+
+                  const userWallet = new Wallet({
+                    user: newUser._id,
+                });
+                userWallet
+                .save()
+                .then()
+                .catch((error)=>{
+                    next(error);
+                });
+
+                  return UserModel.register(newUser, password, function(err){
+                    if(err){
+                        console.log(err);
+                    }
+                    passport.authenticate('local')(req,res, function(err){
+                        res.json({msg: 'Signed Up Successfully'})
+                    })
+                })
+            }
     }catch (error) {
         console.error('Error in CreateAccount:', error);
         res.json({ error: 'Error while signing up new user' });
         }
+}
+const test = (req,res)=>{
+    const {ip} = req.query;
+    if(!ip){
+        return res.json({msg : "Sign up without referral"})
+    }
+    return res.json({msg : "You ref by " + ip})
+    
 }
 
 const Login = async(req,res)=>{
@@ -122,4 +167,4 @@ const Login = async(req,res)=>{
         })
     }
 
-module.exports = {CreateAccount, Login, Logout}
+module.exports = {CreateAccount, Login, Logout, test}
