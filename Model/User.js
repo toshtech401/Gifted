@@ -35,6 +35,9 @@ const userSchema = new Schema({
         type:Boolean,
         default:false
     },
+    referralCode:{
+        type:String
+    },
     next_PaymentDate:{
         type:Date
     }
