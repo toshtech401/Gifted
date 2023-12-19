@@ -11,13 +11,16 @@ const userSchema = new Schema({
         type:String,
         required:true
     },
+    wallet : {
+        type:mongoose.Schema.ObjectId,
+        ref:'Wallet'
+    },
     password:{
         type:String,
         required:true
     },
     confirmPassword:{
         type:String,
-        required:true
     },
     cp: {
         type:Number,
@@ -35,8 +38,15 @@ const userSchema = new Schema({
         type:Boolean,
         default:false
     },
+    referralCode:{
+        type:String
+    },
     next_PaymentDate:{
         type:Date
+    },
+    referrals:{
+        type:mongoose.Schema.ObjectId,
+        ref: 'Referral'
     }
 })
 
