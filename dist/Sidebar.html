@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="/dist/output.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="/dist/Sidebar.css">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+</head>
+<body class="h-[100vh]" >
+    <main id="main"  class="w-[5vw] font-semibold  duration-1000" >
+        <div class=" flex flex-col gap-3 ">
+             <div class=" flex items-center justify-center gap-24 " >
+                <img class="arrow "  onclick="Slide()" width="80" src="/images/Gifted-Brainz-PNG (2).png" alt="">
+                <img class=" hidden  cursor-pointer" width="20" src="/images/Vector (3).png" alt="">
+             </div>
+        <div class=" flex flex-col gap-5 items-start">
+            <div class="side flex bg-[#5852FE] items-center  w-[100%] gap-2 py-[10px]  ">
+                <img width="30" src="/images/Dashboard (1).png" alt="">
+                <h2  class="textt duration-1000   text-[white] text-[14px] ">Dashboard</h2>
+            </div>
+            
+            <div class=" flex flex-col gap-2 w-[100%] items-start">
+                <div class="side flex items-center gap-3  w-[100%]  py-[10px]"><img width="25" src="/images/Group 31 (1).png" alt=""><h2 class="textt duration-1000  text-[14px] ">Quiz Competition</h2></div>
+                <div class="side flex items-center gap-3  w-[100%]  py-[10px]"><img width="25" src="/images/Group 33 (1).png" alt=""><h2 class="textt duration-1000  text-[14px] ">Quiz Leaderboard</h2></div>
+                <div class="side flex items-center gap-3  w-[100%]  py-[10px]"><img width="25" src="/images/Group 31 (1).png" alt=""><h2 class="textt duration-1000  text-[14px] ">Spin To Win</h2></div>
+                <div class="side flex items-center gap-3  w-[100%]  py-[10px]"><img width="25" src="/images/RGB Color Wheel (1).png" alt=""><h2 class="textt duration-1000  text-[14px] ">Courses</h2></div>
+                <div class="side flex items-center gap-3  w-[100%]  py-[10px]"><img width="25" src="/images/Graduation Cap (1).png" alt=""><h2 class="textt duration-1000  text-[14px] ">Payment</h2></div>
+                <div class="side flex items-center gap-3  w-[100%]  py-[10px]"><img width="25" src="/images/Bank Cards (1).png" alt=""><h2 class="textt duration-1000  text-[14px] ">Quiz Competition</h2></div>
+                <div class="side flex items-center gap-3  w-[100%]  py-[10px]"><img width="25" src="/images/Collaboration Female Male (1).png" alt=""><h2 class="textt duration-1000  text-[14px] ">Referrals History</h2></div>
+                <div class="side flex items-center gap-3  w-[100%]  py-[10px]"><img width="25" src="/images/Order History.png" alt=""><h2 class="textt duration-1000  text-[14px] ">Earnings History</h2></div>
+            </div>
+            <div class=" flex flex-col bg-[#5852FE] w-[100%]  items-start gap-6 py-[20px]  text-[white]">
+                <div class="side flex gap-3 items-center "><img width="25" src="/images/Group 34.png" alt=""><h2 class="textt duration-1000    text-[14px] ">Settings</h2></div>
+                <div class="side flex gap-3 items-center "><img width="25" src="/images/Group 35.png" alt=""><h2 class="textt duration-1000  text-[14px] ">Get Help</h2></div>
+                <div class="side flex gap-3 items-center "><img width="25" src="/images/Group 36.png" alt=""><h2 class="textt duration-1000   text-[14px] ">Community</h2></div>
+            </div>
+        </div>
+        </div>
+    </main>
+  <script>
+       
+        var arrow = document.querySelector('.arrow')
+        var every = document.querySelectorAll('#main')
+        arrow.addEventListener('click', ()=>{
+         every.forEach(function(all){
+                if(all.style.width === '5vw' || all.style.width === ''  ){
+                    all.style.width = '13vw'
+                }else{
+                    all.style.width = '5vw'
+                }
+            })
+            
+        })
+        
+    </script>
+</body>
+</html>

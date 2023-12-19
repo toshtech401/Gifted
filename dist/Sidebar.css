@@ -1,0 +1,17 @@
+.side{
+    padding-left: 25px;
+    
+    gap: 29px;
+}
+.sidee{
+    padding-left: 22px;
+    gap: 29px;
+}
+h2{
+    white-space: nowrap; 
+    
+}
+main{
+    width: 10vw;
+    overflow-x: hidden;
+}

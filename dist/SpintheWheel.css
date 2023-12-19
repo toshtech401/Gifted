@@ -1,0 +1,167 @@
+*{
+    padding: 0%;
+    margin: 0%;
+    box-sizing: border-box;
+}
+body{
+    width: 100%;
+ 
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    /* padding-top: 30px; */
+    justify-content: center;
+    background-color: #000000C9;
+    align-items: center;
+}
+.container{
+    position: relative;
+    width: 400px;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.image{
+    content: url(/images/Vector\ \(5\).png);
+    width: 2.5vw;
+    /* clip-path: polygon(46% 0, 96% 26%, 50% 69%);;; */
+    position: absolute;
+    top: 203px;
+    left: 850px;
+    z-index: 1;
+    /* height: 90px; */
+    /* width: 70px; */
+    /* background-color: #f00; */
+}
+.container .spinBtn{
+    position: absolute;
+    width: 60px;
+    height: 40px;
+    background-color: #fff;
+    /* border-radius: 50%; */
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #333;
+    user-select: none;
+   border-radius: 5px;
+    font-weight: 600;
+
+}
+
+.container .wheel{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+    overflow: hidden;
+    border-radius: 50%;
+    border: 20px solid;
+    transition: transform 5s ease-in-out;
+}
+.container .wheel .number{
+    position: absolute;
+    width: 50%;
+    height: 50%;
+    background: var(--clr);
+    transform-origin: bottom right ;
+    transform: rotate(calc(45deg * var(--i)));
+    clip-path: polygon(0 0, 70% 0, 100% 100%, 0 50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+    cursor: pointer;
+
+}
+.container .wheel .number span{
+    position: relative;
+    transform: rotate(45deg);
+    font-size: 20px;
+    font-weight: 600;
+    color: #fff;
+    text-shadow: 3px 5px 2px rgba(0,0,0, 0.15);
+
+}
+.btn{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    h4{
+        color: #B11616;
+        font-weight: 500;
+        font-size: 20px;
+        text-transform: capitalize;
+    }
+}
+.every{
+    background-image: url(/images/Group\ 47.png.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: 0px 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px 90px;
+    border-radius: 10px;
+    gap: 30px;
+    background-color: white;
+}
+
+.images{
+    display: flex;
+    width: 5vw;
+}
+.up{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+.sec{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.cong{
+    font-size: 30px;
+    font-weight: 600;
+}
+.nd{
+    background-color: #5852FE;
+    border: 2px solid #5852FE;
+    padding: 8px 14px;
+    color: white;
+    border-radius: 10px;
+    transition: 0.5s;
+    font-size: 14px;
+    width:25vw;
+    height: 6vh;
+    &:hover{
+        color: #5852FE;
+        background-color: white;
+    }
+}
+
+.immg{
+    position: absolute;
+    left: 780px;
+
+    top: 250px;
+    width: 3.5vw;
+}
+.sec h3{
+    
+    font-weight: 600;
+    color: #5852FE;
+}
+.choose{
+    
+}
