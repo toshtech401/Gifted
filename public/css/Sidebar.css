@@ -1,5 +1,5 @@
 .side{
-    padding-left: 25px;
+    /* padding-left: 25px; */
     
     gap: 29px;
 }
@@ -14,4 +14,9 @@ h2{
 main{
     width: 10vw;
     overflow-x: hidden;
+}
+body{
+    display: flex;
+    width: 100%;
+    /* gap: 400px; */
 }

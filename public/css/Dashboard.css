@@ -3,6 +3,10 @@
     margin: 0%;
     box-sizing: border-box;
 }
+body{
+    display: flex;
+    width: 100%;
+}
 .dash{
     gap: 100px;
 }
