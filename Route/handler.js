@@ -4,12 +4,13 @@ const { contactForm } = require('../Controller/Contact');
 const { createQuestion, getAllQuestion, getQuestion, answeredQuestion, } = require('../Controller/QuizController');
 const { verifyAccount, WithdrawFunds } = require('../Controller/WithdrawController');
 const { initializeAndRedirect, fundWallet } = require('../Controller/WalletController');
-
-
-
+const { createCourse, getAllCourse } = require('../Controller/createCourse');
+const { updateProfile } = require('../Controller/updateProfile');
+const { userDashboard} = require('../Controller/userDashboard');
 
 
 const router = express.Router()
+
 
 router.route('/register').post(CreateAccount)
 router.route('/login').post(Login)
@@ -24,5 +25,9 @@ router.route('/withdrawal').post(WithdrawFunds)
 router.route('/initialize').post(initializeAndRedirect)
 router.route('/fund-wallet').post(fundWallet)
 router.route('/test').get(test)
+router.route('/create-course').post(createCourse)
+router.route('/get-course').get(getAllCourse)
+router.route('/update-profile').patch(updateProfile)
+router.route('/userDashboard').get(userDashboard)
 
 module.exports = router;

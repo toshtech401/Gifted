@@ -1,18 +1,3 @@
-const adminDashboard = async(req, res)=>{
-    const admin = req.user
-    const totalEarnings = await Earnings.find();
-    const totalPoints = await Points.find()
-    const referrals = await Referrals.find();
-  
-    const adminData = {
-      totalEarnings,
-      totalPoints, 
-      referrals
-    }
-    if(!admin) throw new Error("User not found")
-    return res.json({data: adminData})
-  };
-
 
 const userDashboard = async (req, res) => {
     try {
@@ -41,6 +26,5 @@ const userDashboard = async (req, res) => {
 };
 
 module.exports = {
-    adminDashboard,
     userDashboard 
 };
