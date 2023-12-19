@@ -4,6 +4,7 @@ const { contactForm } = require('../Controller/Contact');
 const { createQuestion, getAllQuestion, getQuestion, answeredQuestion, } = require('../Controller/QuizController');
 const { verifyAccount, WithdrawFunds } = require('../Controller/WithdrawController');
 const { initializeAndRedirect, fundWallet } = require('../Controller/WalletController');
+const { home, signUp, signIn, dashboard } = require('../Controller/Controller');
 
 
 
@@ -11,6 +12,10 @@ const { initializeAndRedirect, fundWallet } = require('../Controller/WalletContr
 
 const router = express.Router()
 
+router.route('/').get(home)
+router.route('/sign-up').get(signUp)
+router.route('/sign-in').get(signIn)
+router.route('/dashboard').get(dashboard)
 router.route('/register').post(CreateAccount)
 router.route('/login').post(Login)
 router.route('/logout').get(Logout)
