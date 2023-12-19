@@ -11,7 +11,8 @@ port = process.env.port || 9000
 
 const app = express()
 app.use(express.json())
-app.use(express.urlencoded({extended:true}))
+app.use(express.urlencoded({extended:true}));
+app.use(express.static('public'))
 
 
 app.use(session({
@@ -28,6 +29,8 @@ app.use(passport.session())
 
 app.use('/api/v1', router)
 
+
+app.set('view engine', 'ejs' );
 
 
 
