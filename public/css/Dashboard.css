@@ -1,0 +1,148 @@
+*{
+    padding: 0%;
+    margin: 0%;
+    box-sizing: border-box;
+}
+.dash{
+    gap: 100px;
+}
+input{
+    height: 5vh;
+    outline: none;
+}
+.tote{
+background-color: #5852FE;
+display: flex;
+flex-direction: column;
+color: white;
+align-items: center;
+padding: 30px 40px;
+border-radius: 10px;
+h2{
+    color: #FFFFFFB5;
+    font-weight: 500;
+}
+h1{
+    font-size: 40px;
+    font-weight: 500;
+}
+}
+.tot{
+    background-color: #34A853;
+display: flex;
+flex-direction: column;
+color: white;
+align-items: center;
+padding: 30px 70px;
+border-radius: 10px;
+h2{
+    color: #FFFFFFB5;
+    font-weight: 500;
+}
+h1{
+    font-size: 40px;
+    font-weight: 500;
+    sub{
+        font-size: 18px;
+    }
+}
+}
+.ref{
+    background-color: #F5761A;
+display: flex;
+flex-direction: column;
+color: white;
+align-items: center;
+padding: 30px 60px;
+border-radius: 10px;
+h2{
+    color: #FFFFFFB5;
+    font-weight: 500;
+}
+h1{
+    font-size: 40px;
+    font-weight: 500;
+ 
+}
+}
+table{
+    font-weight: 500;
+}
+.tab{
+    gap: 100px;
+    
+}
+.wel{
+    gap: 20px;
+}
+.task{
+    text-align: left;
+    padding-right: 500px;
+}
+.ta{
+    text-align: center;
+   
+}
+.fif{
+    text-align: center;
+    padding-right: 50px;
+}
+td, th{
+    padding: 15px;
+    border-bottom: 1px solid;
+}
+.all{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 40px;
+}
+.up{
+    display: flex;
+    flex-direction: column;
+    
+    gap: 20px;
+}
+.earn{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+}
+@media screen and (max-width:950px) {
+    .input{
+        width: 40vw;
+    }
+    .wel{
+        flex-direction: column;
+    }
+    .tab{
+        flex-direction: column;
+        gap: 10px;
+    }
+    .task, .fif{
+        padding-right: 0;
+    }
+    table{
+        font-size: 11px;
+    }
+    .dash{
+        flex-direction: column;
+        gap: 6px;
+    }
+    .ghy{
+        gap: 10px;
+    }
+    .fgg{
+        font-size: 20px;
+    }
+    .tote, .tot, .ref{
+        padding: 15px ;
+    }
+    .earn{
+        gap: 10px;
+    }
+    .earn h2{
+        font-size: 20px;
+    }
+}

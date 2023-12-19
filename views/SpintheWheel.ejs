@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/dist/SpintheWheel.css">
+    <link rel="stylesheet" href="/dist/output.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body class=" font-poppins">
+    <div class="every">
+        
+        <div class="sec">
+                <h1 class="cong">Spin The Wheel</h1>
+                <h3>Win And Be Rewarded</h3>
+        </div>
+        <div class="image"></div>
+        <div class="container">
+            <div class="spinBtn">Spin</div>
+            <div class="wheel">
+                <div class="number" style="--i:1;--clr:#ED1C24; ">
+                    <span>Empty</span>
+                </div>
+                <div class="number" style="--i:2;--clr:#2E3192; ">
+                    <span>5 Pts</span>
+                </div>
+                <div class="number" style="--i:3;--clr:#F7941D; ">
+                    <span>50 Pts</span>
+                </div>
+                <div class="number" style="--i:4;--clr:#2E3192; ">
+                    <span>250 Pts</span>
+                </div>
+                <div class="number" style="--i:5;--clr:#F7941D; ">
+                    <span>Empty</span>
+                </div>
+                <div class="number" style="--i:6;--clr:#00A651; ">
+                    <span>100 Pts</span>
+                </div>
+                <div class="number" style="--i:7;--clr:#ED1C24; ">
+                    <span>Empty</span>
+                </div>
+                <div class="number" style="--i:8;--clr:#00A651; ">
+                    <span>25 Pts</span>
+                </div>
+            </div>
+        </div>
+            
+       
+        <div class="btn">
+            <h4 class="you">you can only spin at once</h4>
+            <button class="nd">Spin Now</button>
+        </div>
+    </div>
+    <script>
+        let wheel = document.querySelector('.wheel')
+        let spinBtn = document.querySelector('.spinBtn')
+        let value = Math.ceil(Math.random() * 3600);
+
+        spinBtn.onclick = function(){
+            wheel.style.transform = "rotate(" + value + "deg)"  
+            value += Math.ceil(Math.random() * 3600);
+        }
+    </script>
+</body>
+</html>

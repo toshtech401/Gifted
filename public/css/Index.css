@@ -1,0 +1,197 @@
+.menu{
+    display: none;
+}
+
+@media screen and (max-width: 769px) {
+    .sec1{
+        display: flex;
+        flex-direction: column;
+       
+    }
+    .nav{
+        gap: 60px ;
+        justify-content: space-around;
+    }
+    .img1 img{
+        width: 100px;
+    }
+    .links{
+        display: none;
+        
+    }
+    .menu{
+        display: block;
+        background-color: #5852FE;
+        padding: 5px;
+        border-radius: 10px;
+
+    }
+    .line2{
+        background-color: white;
+        width: 28px;
+        height: 3px;
+        margin: 5px;
+    }
+    .mmain{
+        gap: 50px;
+        flex-direction: column-reverse;
+        padding-bottom: 20px;
+    }
+    .head1 h1{
+        font-size: 30px;
+        width: 80vw;
+        text-align: center;
+        font-weight: 600;
+        line-height: 40px;
+    }
+    .head1 h3{
+        font-size: 18px;
+        width: 75vw;
+        text-align: center;
+        font-weight: 600;
+        /* line-height: 40px; */
+    }
+    .head1{
+        align-items: center;
+        gap: 4px;
+    }
+    .headd{
+        align-items: center;
+        gap: 10px;
+    }
+    .mainimg img{
+        width: 90vw;
+    }
+    .head2 h4{
+        width: 80vw;
+        text-align: center;
+
+    }
+    .how{
+        font-size: 18px;
+    }
+    .tt1{
+        flex-direction: column;
+        gap: 20px;
+    }
+    .t2{
+        gap: 20px;
+    }
+    .textt{
+        width: 72vw;
+        text-align: center;
+    }
+    .four{
+        flex-direction: column;
+    }
+    .text2{
+        width: 65vw;
+    }
+    .fourb{
+        padding: 30px 30px;
+    }
+    .imagee{
+        width: 65vw;
+    }
+
+    .accord{
+        flex-direction: column;
+        gap: 40px;
+    }
+    .btn{
+        gap: 10px;
+    }
+    .texxt{
+        width: 45vw;
+    }
+    .line{
+        /* display: none; */
+         background-color: black;
+        height: 14px;
+        width: 2px;
+        left: 9px; 
+    }
+.circle6{
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.ndline{
+    background-color: black;
+}
+.content p{
+    width: 70vw;
+}
+.top{
+    flex-direction: column;
+    gap: 25px;
+}
+.evee{
+    gap: 25px;
+}
+.tyr{
+    width: 65vw;
+}
+.ss{
+    flex-direction: column;
+    align-items: center;
+}
+.eed{
+    width: 70vw;
+}
+.edd{
+    width: 70vw;
+}
+.immh{
+    width: 35vw;
+}
+.sss{
+    width: 75vw;
+}
+.kil{
+    flex-direction: column-reverse;
+    align-items: center;
+    text-align: center;
+    padding: 15px 10px;
+    margin: 10px;
+    
+}
+.kk h3{
+width: 70VW;
+}
+.kk h1{
+width: 70VW;
+line-height: 35px;
+}
+.kik{
+    gap: 20px;
+}
+.ghg{
+    width: 50vw;
+}
+.llogo{
+    gap: 10px;
+}
+.img1{
+    width: 20vw;
+}
+.img2{
+    width: 10vw;
+}
+.iinp{
+    width: 50vw;
+    height: 9vh;
+}
+.ddiv{
+    width: 85vw;
+    align-items: center;
+}
+.fgf{
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+}
+}   
+
+
