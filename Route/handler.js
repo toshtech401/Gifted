@@ -1,5 +1,5 @@
 const express = require('express');
-const { Login, Logout, CreateAccount } = require('../Controller/auth');
+const { Login, Logout, CreateAccount, test } = require('../Controller/auth');
 const { contactForm } = require('../Controller/Contact');
 const { createQuestion, getAllQuestion, getQuestion, answeredQuestion, } = require('../Controller/QuizController');
 const { verifyAccount, WithdrawFunds } = require('../Controller/WithdrawController');
@@ -23,6 +23,6 @@ router.route('/verify-account').post(verifyAccount)
 router.route('/withdrawal').post(WithdrawFunds)
 router.route('/initialize').post(initializeAndRedirect)
 router.route('/fund-wallet').post(fundWallet)
-
+router.route('/test').get(test)
 
 module.exports = router;
