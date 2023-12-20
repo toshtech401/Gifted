@@ -4,7 +4,7 @@ const { contactForm } = require('../Controller/Contact');
 const { createQuestion, getAllQuestion, getQuestion, answeredQuestion, } = require('../Controller/QuizController');
 const { verifyAccount, WithdrawFunds } = require('../Controller/WithdrawController');
 const { initializeAndRedirect, fundWallet } = require('../Controller/WalletController');
-const { home, signUp, signIn, dashboard } = require('../Controller/Controller');
+const { home, signUp, signIn, dashboard, gethelp, getsupport, congratulation, payment, planpage, referral, spin } = require('../Controller/Controller');
 
 
 
@@ -13,6 +13,13 @@ const { home, signUp, signIn, dashboard } = require('../Controller/Controller');
 const router = express.Router()
 
 router.route('/').get(home)
+router.route('/gethelp').get(gethelp)
+router.route('/congratulation').get(congratulation)
+router.route('/payment').get(payment)
+router.route('/planpage').get(planpage)
+router.route('/referral').get(referral)
+router.route('/spin').get(spin)
+router.route('/getsupport').get(getsupport)
 router.route('/sign-up').get(signUp)
 router.route('/sign-in').get(signIn)
 router.route('/dashboard').get(dashboard)
