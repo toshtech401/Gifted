@@ -8,6 +8,7 @@ const { createCourse, getAllCourse } = require('../Controller/createCourse');
 const { updateProfile } = require('../Controller/updateProfile');
 const { userDashboard} = require('../Controller/userDashboard');
 const { home, signUp, signIn, dashboard, coursePage, leaderBoard, quizPage, quizSelection, settings, spinWheel } = require('../Controller/Controller');
+const { home, signUp, signIn, dashboard, gethelp, getsupport, congratulation, payment, planpage, referral, spin } = require('../Controller/Controller');
 
 
 
@@ -17,6 +18,13 @@ const router = express.Router()
 
 
 router.route('/').get(home)
+router.route('/gethelp').get(gethelp)
+router.route('/congratulation').get(congratulation)
+router.route('/payment').get(payment)
+router.route('/planpage').get(planpage)
+router.route('/referral').get(referral)
+router.route('/spin').get(spin)
+router.route('/getsupport').get(getsupport)
 router.route('/sign-up').get(signUp)
 router.route('/sign-in').get(signIn)
 router.route('/dashboard').get(dashboard)
