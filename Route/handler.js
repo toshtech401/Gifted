@@ -7,7 +7,7 @@ const { initializeAndRedirect, fundWallet } = require('../Controller/WalletContr
 const { createCourse, getAllCourse } = require('../Controller/createCourse');
 const { updateProfile } = require('../Controller/updateProfile');
 const { userDashboard} = require('../Controller/userDashboard');
-const { home, signUp, signIn, dashboard, coursePage, leaderBoard, quizPage, quizSelection, settings, spinWheel } = require('../Controller/Controller');
+const { home, signUp, signIn, dashboard, coursePage, leaderBoard, quizPage, quizSelection, setting, spinWheel } = require('../Controller/Controller');
 const { home, signUp, signIn, dashboard, gethelp, getsupport, congratulation, payment, planpage, referral, spin } = require('../Controller/Controller');
 
 
@@ -32,7 +32,7 @@ router.route('/coursepage').get(coursePage)
 router.route('/leaderboard').get(leaderBoard)
 router.route('/quizPage').get(quizPage)
 router.route('/quizSelection').get(quizSelection)
-router.route('/settings').get(settings)
+router.route('/settings').get(setting)
 router.route('/spinWheel').get(spinWheel)
 router.route('/register').post(CreateAccount)
 router.route('/login').post(Login)

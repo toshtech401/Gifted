@@ -15,6 +15,28 @@ const dashboard = (req, res)=>{
     res.render('Dashboard')
 }
 
+const coursePage = (req, res)=>{
+    res.render('Coursepage')
+}
+
+const leaderBoard = (req, res)=>{
+    res.render('LeaderBoard')
+}
+
+const quizPage = (req, res) =>{
+    res.render('Quizpage')
+}
+
+const quizSelection = (req, res) =>{
+    res.render('Quizselection')
+}
+
+const setting = (req, res) =>{
+    res.render('Settings')
+}
+const spinWheel = (req, res) =>{
+    res.render('SpintheWheel')
+}
 const gethelp = (req, res)=>{
     res.render('GetHelp')
 }
@@ -48,6 +70,12 @@ module.exports = {
     signUp, 
     signIn,
     dashboard,
+    coursePage,
+    leaderBoard,
+    quizPage,
+    quizSelection,
+    setting,
+    spinWheel,
     gethelp,
     getsupport,
     congratulation,
