@@ -6,6 +6,7 @@ const session = require('express-session')
 const passport = require('passport')
 const passportLocalMongoose = require('passport-local-mongoose')
 const router = require('./Route/handler')
+const ejs = require('ejs')
 
 port = process.env.port || 9000
 
@@ -27,7 +28,7 @@ app.use(session({
 app.use(passport.initialize())
 app.use(passport.session())
 
-app.use('/api/v1', router)
+app.use('/', router)
 
 
 app.set('view engine', 'ejs' );

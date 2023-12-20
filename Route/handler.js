@@ -7,11 +7,25 @@ const { initializeAndRedirect, fundWallet } = require('../Controller/WalletContr
 const { createCourse, getAllCourse } = require('../Controller/createCourse');
 const { updateProfile } = require('../Controller/updateProfile');
 const { userDashboard} = require('../Controller/userDashboard');
+const { home, signUp, signIn, dashboard, coursePage, leaderBoard, quizPage, quizSelection, settings, spinWheel } = require('../Controller/Controller');
+
+
+
 
 
 const router = express.Router()
 
 
+router.route('/').get(home)
+router.route('/sign-up').get(signUp)
+router.route('/sign-in').get(signIn)
+router.route('/dashboard').get(dashboard)
+router.route('/coursepage').get(coursePage)
+router.route('/leaderboard').get(leaderBoard)
+router.route('/quizPage').get(quizPage)
+router.route('/quizSelection').get(quizSelection)
+router.route('/settings').get(settings)
+router.route('/spinWheel').get(spinWheel)
 router.route('/register').post(CreateAccount)
 router.route('/login').post(Login)
 router.route('/logout').get(Logout)
