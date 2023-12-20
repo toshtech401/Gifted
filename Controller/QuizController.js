@@ -47,19 +47,24 @@ const getQuestion = async (req, res)=>{
 
 
 const answeredQuestion = async (req, res)=>{
-    const user = req.user
-    const {id} = req.params;
-    const {chosenOption} = req.body
-    const avail_qst = await Quiz.findOne({_id:id});
-    const p_on_correctAns = avail_qst.points;
-    if(!avail_qst) return res.json({error: "Question not available right now"})
+    try {
+        const user = req.user
+        const {id} = req.params;
+        const {chosenOption} = req.body
+        const avail_qst = await Quiz.findOne({_id:id});
+        if(!avail_qst) return res.json({error: "Question not available right now"})
 
-    // Check if choosen answer is correct
 
-    if(avail_qst.correctAnswer === chosenOption){
-        user.cp = p_on_correctAns;
-        await UserModel.save();
-        return res.json({msg: "Question answered successfully"})
+        if(avail_qst.correctAnswer === chosenOption){
+            user.points +=20;
+            await UserModel.save();
+            return res.json({msg: "Question answered successfully"})
+        }else{
+            return res.json({error: "Incorrect answer"})
+        }
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({error: "Internal Server Error..."})
     }
 
 

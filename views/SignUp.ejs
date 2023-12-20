@@ -13,23 +13,35 @@
 <body class=" font-poppins">
     <div class="all">
         <div class="logo">
-            <img src="/images/Gifted-Brainz-PNG (1).png" alt="logo gifted">
+            <img src="/images/gifted_logo.png" style="height: 100px;" alt="logo gifted">
             <h2 class="font-semibold text-[20px]">Sign Up</h2>
         </div>
-        <form action="">
+        <form action="/sign-up" method="post" >
         <div class="form ">
             <div>
                 <label for="">Username</label><br>
-                <input class="inp" type="text">
+                <input class="inp" type="text" name="username">
             </div>
             <div>
                 <label for="">Enter Your Email</label><br>
-                <input class="inp" type="email">
+                <input class="inp" type="email" name="email">
             </div>
             <div>
                 <label for="">Password</label><br>
-                <input class="inp" type="password">
+                <input class="inp" type="password" name="password">
             </div>
+            <div>
+                <label for="">Confirm Password</label><br>
+                <input class="inp" type="password" name="confirmPassword">
+            </div>
+            <div>
+                <label for="">Plan Type</label><br>
+                <select name="plan_type" id="">
+                    <option value="weekly">Weekly Plan</option>
+                    <option value="monthly">Monthly Plan</option>
+                </select>
+            </div>
+            
             <div class="ch">
                 <input class="check" type="checkbox" name="" id="">
                 <label for="terms" class="lab capitalize w-[22vw]"> 
@@ -41,7 +53,7 @@
             </div>
         </div>
         <div class="sign">
-            <button>Sign in</button>
+            <button type="submit">Sign in</button>
             <h4>OR</h4>
             <div class="google">
             <img   src="/images/Group 22.png" alt="">

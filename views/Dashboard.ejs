@@ -36,19 +36,29 @@
                 </div>
             </div>
             <div class="wel flex flex-col">
-                <div><h1 class="text-[30px] font-semibold">Welcome, Jays</h1></div>
+                <div><h1 class="text-[30px] font-semibold">Welcome, <%= userData.name %></h1></div>
                 <div class="tab flex">
                     <div class="tote">
                         <h2>Total Earnings</h2>
-                        <h1>#203,978</h1>
+                        <h1># <%= userData.totalEarnings %></h1>
                     </div>
                     <div class="tot">
                         <h2>Total Points</h2>
-                        <h1>2000<sub>SQP</sub></h1>
+                        <h1>
+                            <% if(userData.totalPoints) { %>
+                                <%=userData.totalPoints%>
+                            <% } %>
+                            0
+                            <sub>SQP</sub>
+                        </h1>
                     </div>
                     <div class="ref">
                         <h2>Referrals Earnings</h2>
-                        <h1>#12,000</h1>
+                        <h1># <% if(userData.referralCommission) { %>
+                            <%=userData.referralCommission%>
+                        <% } %>
+                        0
+                    </h1>
                     </div>
                 </div>
             </div>

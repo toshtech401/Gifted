@@ -7,24 +7,24 @@ const QuizSchema = new Schema({
         required : true
     },
    options_a : {
-                type : String,
-                required : true
-            },
+        type : String,
+        required : true
+    },
     options_b : {
-                type : String,
-                required : true
-            },
+        type : String,
+        required : true
+    },
     options_c : {
-                type : String,
-                required : true
-            },
+        type : String,
+        required : true
+    },
     options_d : {
-                type : String,
-                required : true
-            },
+        type : String,
+        required : true
+    },
     correctAnswer : {
-                type : String,
-            },
+        type : String,
+    },
     points : {
         type:Number,
         default: 0
