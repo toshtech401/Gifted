@@ -1,33 +1,93 @@
-<section class="h-[100vh]" >
-    <main id="main"  class="w-[5vw] font-semibold  duration-1000" >
-        <div class=" flex flex-col gap-3 ">
-             <div class=" flex items-center justify-center gap-24 " >
-                <img class="arrow "  onclick="Slide()" width="80" src="/images/Gifted-Brainz-PNG (2).png" alt="">
-                <img class=" cursor-pointer" width="20" src="/images/Vector (3).png" alt="">
-             </div>
-        <div class=" flex flex-col gap-5 items-start">
-            <div class="side flex bg-[#5852FE] items-center  w-[100%] gap-2 py-[10px]  ">
-                <img width="30" src="/images/Dashboard (1).png" alt="">
-                <h2  class="textt duration-1000   text-[white] text-[14px] ">Dashboard</h2>
-            </div>
-            
-            <div class=" flex flex-col gap-2 w-[100%] items-start">
-                <div class="side flex items-center gap-3  w-[100%]  py-[10px]"><img width="25" src="/images/Group 31 (1).png" alt=""><h2 class="textt duration-1000  text-[14px] ">Quiz Competition</h2></div>
-                <div class="side flex items-center gap-3  w-[100%]  py-[10px]"><img width="25" src="/images/Group 33 (1).png" alt=""><h2 class="textt duration-1000  text-[14px] ">Quiz Leaderboard</h2></div>
-                <div class="side flex items-center gap-3  w-[100%]  py-[10px]"><img width="25" src="/images/Group 31 (1).png" alt=""><h2 class="textt duration-1000  text-[14px] ">Spin To Win</h2></div>
-                <div class="side flex items-center gap-3  w-[100%]  py-[10px]"><img width="25" src="/images/RGB Color Wheel (1).png" alt=""><h2 class="textt duration-1000  text-[14px] ">Courses</h2></div>
-                <div class="side flex items-center gap-3  w-[100%]  py-[10px]"><img width="25" src="/images/Graduation Cap (1).png" alt=""><h2 class="textt duration-1000  text-[14px] ">Payment</h2></div>
-                <div class="side flex items-center gap-3  w-[100%]  py-[10px]"><img width="25" src="/images/Bank Cards (1).png" alt=""><h2 class="textt duration-1000  text-[14px] ">Quiz Competition</h2></div>
-                <div class="side flex items-center gap-3  w-[100%]  py-[10px]"><img width="25" src="/images/Collaboration Female Male (1).png" alt=""><h2 class="textt duration-1000  text-[14px] ">Referrals History</h2></div>
-                <div class="side flex items-center gap-3  w-[100%]  py-[10px]"><img width="25" src="/images/Order History.png" alt=""><h2 class="textt duration-1000  text-[14px] ">Earnings History</h2></div>
-            </div>
-            <div class=" flex flex-col bg-[#5852FE] w-[100%]  items-start gap-6 py-[20px]  text-[white]">
-                <div class="side flex gap-3 items-center "><img width="25" src="/images/Group 34.png" alt=""><h2 class="textt duration-1000    text-[14px] ">Settings</h2></div>
-                <div class="side flex gap-3 items-center "><img width="25" src="/images/Group 35.png" alt=""><h2 class="textt duration-1000  text-[14px] ">Get Help</h2></div>
-                <div class="side flex gap-3 items-center "><img width="25" src="/images/Group 36.png" alt=""><h2 class="textt duration-1000   text-[14px] ">Community</h2></div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sidebar</title>
+    <link rel="stylesheet" href="/css/Sidebar.css">
+</head>
+<body>
+    <div class="app">
+        
+        <div class="menu-toggle">
+            <div class="hamburger">
+                <span></span>
             </div>
         </div>
-        </div>
-    </main>
-  </section>
-  <script src="/js/sidebar.js"></script>
+
+        <aside class="sidebar close">
+            <div class="brain">
+                <img src="/images/gifted_logo.png" class="n_b" alt="">
+                <img src="/images/Arrow 4.png" class="arrow toggle" alt="">
+            </div>
+
+            <div class="dash1">
+                <img src="/images/Dashboard.png" alt="">
+
+                <a href="">Dashboard</a>
+            </div>
+
+            <nav>
+                <div class="run">
+                    <div class="imaging"><img src="/images/Running.png" alt=""></div>
+
+                    <a href="" class="item">Quiz Competition</a>
+                </div>
+
+                <div class="run">
+                    <div class="imgr"><img src="/images/Group 33.png" alt=""></div>
+                    
+                    <a href="" class="item">Quiz Leaderboard</a>
+                </div>
+
+                <div class="run">
+                    <img class="imgr" src="/images/RGB Color Wheel.png" alt="">
+                    <a href="" class="item">Spin to Win</a>
+                </div>
+
+                <div class="run">
+                    <img class="imgr" src="/images/Graduation Cap.png" alt="">
+                    <a href="" class="item">Courses</a>
+                </div>
+
+                <div class="run">
+                    <img class="imgr" src="/images/Bank Cards.png" alt="">
+                    <a href="" class="item">Payment</a>
+                </div>
+
+                <div class="run">
+                    <img class="imgr" src="/images/Collaboration Female Male.png" alt="">
+                    <a href="" class="item">Referral History</a>
+                </div>
+
+                <div class="run">
+                    <img class="imgr" src="/images/Order History.png" alt="">
+                    <a href="" class="item">Earnings History</a>
+                </div>
+            </nav>
+
+            <nav class="new">
+                <div class="runn">
+                    <img class="imgr" src="/images/Group 34.png" alt="">
+                    <a href="" class="item1">Settings</a>
+                </div>
+
+                <div class="runn">
+                    <img class="imgr" src="/images/Group 35.png" alt="">
+                    <a href="" class="item1">Get Help</a>
+                </div>
+
+                <div class="runn">
+                    <img class="imgr" src="/images/Group 36.png" alt="">
+                    <a href="" class="item1">Community</a>
+                </div>
+            </nav>
+        </aside>
+
+        
+
+    </div>
+
+    <script src="/js/sidebar.js"></script>
+</body>
+</html>

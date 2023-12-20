@@ -15,9 +15,13 @@ const dashboard = (req, res)=>{
     res.render('Dashboard')
 }
 
+const spin = (req, res)=>{
+    res.render('SpintheWheel')
+}
 module.exports = {
     home,
     signUp, 
     signIn,
-    dashboard
+    dashboard,
+    spin
 }
