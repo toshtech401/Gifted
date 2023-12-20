@@ -15,30 +15,6 @@ const dashboard = (req, res)=>{
     res.render('Dashboard')
 }
 
-<<<<<<< HEAD
-const coursePage = (req, res)=>{
-    res.render('Coursepage')
-}
-
-const leaderBoard = (req, res)=>{
-    res.render('LeaderBoard')
-}
-
-const quizPage = (req, res) =>{
-    res.render('Quizpage')
-}
-
-const quizSelection = (req, res) =>{
-    res.render('Quizselection')
-}
-
-const settings = (req, res) =>{
-    res.render('Settings')
-}
-const spinWheel = (req, res) =>{
-    res.render('SpintheWheel')
-}
-=======
 const gethelp = (req, res)=>{
     res.render('GetHelp')
 }
@@ -67,20 +43,11 @@ const spin = (req, res)=>{
     res.render('SpinAndWin')
 }
 
->>>>>>> 108c06db24a3520596fa46b512ff4fb87b73a423
 module.exports = {
     home,
     signUp, 
     signIn,
     dashboard,
-<<<<<<< HEAD
-    coursePage,
-    leaderBoard,
-    quizPage,
-    quizSelection,
-    settings,
-    spinWheel
-=======
     gethelp,
     getsupport,
     congratulation,
@@ -88,5 +55,4 @@ module.exports = {
     planpage,
     referral,
     spin
->>>>>>> 108c06db24a3520596fa46b512ff4fb87b73a423
 }
