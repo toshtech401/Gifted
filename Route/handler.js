@@ -7,8 +7,7 @@ const { initializeAndRedirect, fundWallet } = require('../Controller/WalletContr
 const { createCourse, getAllCourse } = require('../Controller/createCourse');
 const { updateProfile } = require('../Controller/updateProfile');
 const { userDashboard} = require('../Controller/userDashboard');
-const { home, signUp, signIn, dashboard, coursePage, leaderBoard, quizPage, quizSelection, setting, spinWheel } = require('../Controller/Controller');
-const { home, signUp, signIn, dashboard, gethelp, getsupport, congratulation, payment, planpage, referral, spin } = require('../Controller/Controller');
+const { home, signUp, signIn, dashboard, gethelp, getsupport, congratulation, payment, planpage, referral, spin, coursePage, leaderBoard, quizPage, quizSelection, setting, spinWheel } = require('../Controller/Controller');
 
 
 
