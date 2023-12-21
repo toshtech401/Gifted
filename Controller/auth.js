@@ -6,7 +6,6 @@ const nodemailer = require('nodemailer');
 const passport = require('passport');
 const UserModel = require('../Model/User');
 const referralModel = require('../Model/referral')
-const planModel = require('../Model/Plan');
 const Wallet = require("../Model/Wallet");
 const baseUrl = process.env.base_url;
 
@@ -114,7 +113,7 @@ const CreateAccount = async (req, res) => {
                         console.log(err);
                     }
                     passport.authenticate('local')(req,res, function(err){
-                        res.json({msg: 'Signed Up Successfully'})
+                        return res.redirect('/sign-in')
                     })
                 })
             }

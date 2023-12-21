@@ -50,6 +50,12 @@ const userSchema = new Schema({
     },
     referraL_link:{
         type: String
+    },
+    plan_type:{
+        type:String,
+        required:true,
+        enum:['weekly','monthly']
+    
     }
 })
 
