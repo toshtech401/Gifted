@@ -1,8 +1,35 @@
 .menu{
     display: none;
 }
+.iinp{
+    outline: none;
+}
+.img1{
+    height: 20vh;
+}
+.img2{
+    height: 30px;
+}
+.llogo{
+    padding-left: 10%;
+}
+.mobile{
+    display: none;
+}
+.logo img{
+    height: 25vh;
+}
+
+.nav{
+    display: flex;
+    align-items: center;
+}
 
 @media screen and (max-width: 769px) {
+    .logo img{
+        height: 15vh;
+    }
+    
     .sec1{
         display: flex;
         flex-direction: column;
@@ -191,6 +218,33 @@ line-height: 35px;
     flex-direction: column;
     gap: 10px;
     text-align: center;
+}
+.mobile{
+    display: flex;
+    flex-direction: column;
+    height: 0;
+    gap: 30px;
+    width: 100%;
+    transition: all 1s ease;
+    align-items: center;
+    z-index: 999;
+    background-color: #5852FE;
+    color: white;
+}
+.mobile ul{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    overflow: hidden;
+    z-index: 999;
+}
+.display{
+    display: flex;
+    height: 45vh;
+    position: relative;
+    padding: 20px 0;
+    width: 100%;
 }
 }   
 

@@ -7,9 +7,7 @@ const { initializeAndRedirect, fundWallet } = require('../Controller/WalletContr
 const { createCourse, getAllCourse } = require('../Controller/createCourse');
 const { updateProfile } = require('../Controller/updateProfile');
 const { userDashboard} = require('../Controller/userDashboard');
-const { home, signUp, signIn, dashboard, gethelp, getsupport, congratulation, payment, planpage, referral, spin, coursePage, leaderBoard, quizPage, quizSelection, setting, spinWheel } = require('../Controller/Controller');
-
-
+const { home, signUp, signIn, dashboard, gethelp, getsupport, congratulation, payment, planpage, referral, spin, coursePage, leaderBoard, quizPage, quizSelection, setting, spinWheel, createQuiz, makePayment } = require('../Controller/Controller');
 
 
 
@@ -19,6 +17,7 @@ const router = express.Router()
 router.route('/').get(home)
 router.route('/gethelp').get(gethelp)
 router.route('/congratulation').get(congratulation)
+router.route('/createQuiz').get(createQuiz)
 router.route('/payment').get(payment)
 router.route('/planpage').get(planpage)
 router.route('/referral').get(referral)
@@ -26,6 +25,7 @@ router.route('/spin').get(spin)
 router.route('/getsupport').get(getsupport)
 router.route('/sign-up').get(signUp)
 router.route('/sign-in').get(signIn)
+router.route('/makePayment').get(makePayment)
 router.route('/dashboard').get(dashboard)
 router.route('/coursepage').get(coursePage)
 router.route('/leaderboard').get(leaderBoard)

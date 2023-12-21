@@ -64,6 +64,12 @@ const referral = (req,res)=>{
 const spin = (req, res)=>{
     res.render('SpinAndWin')
 }
+const createQuiz = (req, res)=>{
+    res.render('createQuiz')
+}
+const makePayment= (req, res)=>{
+    res.render('pay')
+}
 
 module.exports = {
     home,
@@ -82,5 +88,7 @@ module.exports = {
     payment,
     planpage,
     referral,
-    spin
+    spin,
+    createQuiz,
+    makePayment
 }
