@@ -47,6 +47,15 @@ const userSchema = new Schema({
     referrals:{
         type:mongoose.Schema.ObjectId,
         ref: 'Referral'
+    },
+    referraL_link:{
+        type: String
+    },
+    plan_type:{
+        type:String,
+        required:true,
+        enum:['weekly','monthly']
+    
     }
 })
 

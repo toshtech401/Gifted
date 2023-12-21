@@ -1,3 +1,7 @@
+const Points = require("../Model/Points")
+const Wallet = require("../Model/Wallet")
+const referralModel = require("../Model/referral")
+
 const home = (req, res)=>{
     res.render('home')
 }
@@ -11,8 +15,38 @@ const signIn = (req, res)=>{
     res.render('Signin')
 }
 
-const dashboard = (req, res)=>{
-    res.render('Dashboard')
+const dashboard = async(req, res)=>{
+
+    try {
+        const user = req.user;
+
+        if (!user) {
+            return res.status(404).json({ error: "You are not authorized!" });
+        }
+
+
+        const userPoints = await Points.findOne({user: user._id})
+        const userWallet = await Wallet.findOne({user: user._id})
+        const referrals = await referralModel.findOne({user: user._id})
+
+        const totalEarnings = userWallet?.current_balance;
+        const totalPoints = userPoints?.points
+        const referralCommission = referrals?.referralCommission
+
+        const userData = {
+            totalEarnings,
+            totalPoints,
+            referralCommission,
+            name: user.username
+        };
+
+         console.log({userData });
+        
+        return res.render('Dashboard', {userData })
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ error: "Internal Server Error" });
+    }
 }
 
 const coursePage = (req, res)=>{

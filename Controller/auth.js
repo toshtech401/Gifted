@@ -6,8 +6,8 @@ const nodemailer = require('nodemailer');
 const passport = require('passport');
 const UserModel = require('../Model/User');
 const referralModel = require('../Model/referral')
-const planModel = require('../Model/Plan');
 const Wallet = require("../Model/Wallet");
+const baseUrl = process.env.base_url;
 
 const CreateAccount = async (req, res) => {
 
@@ -37,13 +37,16 @@ const CreateAccount = async (req, res) => {
         const referrer = await UserModel.findOne({referralCode: ref})
         if(!referrer){
 
+            const refLink = `${baseUrl}/sign-up?ref=${username}`
+
         const newUser = new UserModel({
             email,
             username,
             password: hashedPassword,
             plan_type,
             referralCode:username,
-            isPaid: true
+            isPaid: true,
+            referral_link: refLink
         });
 
         const userWallet = new Wallet({
@@ -65,13 +68,16 @@ const CreateAccount = async (req, res) => {
                     })
                 })
             }else{
+
+                const refLink = `${baseUrl}/sign-up?ref=${username}`
                 const newUser = new UserModel({
                     email,
                     username,
                     password: hashedPassword,
                     plan_type,
                     referralCode:username,
-                    isPaid: true
+                    isPaid: true,
+                    referral_link: refLink
                 });
 
                  await referralModel.create({
@@ -107,7 +113,7 @@ const CreateAccount = async (req, res) => {
                         console.log(err);
                     }
                     passport.authenticate('local')(req,res, function(err){
-                        res.json({msg: 'Signed Up Successfully'})
+                        return res.redirect('/sign-in')
                     })
                 })
             }
@@ -153,7 +159,7 @@ const Login = async(req,res)=>{
                 return res.json(err)
             }
             passport.authenticate('local')(req, res, function(){
-                res.json({msg: 'Login Successfully'})
+                return res.redirect("/dashboard")
             })
         })
     }
@@ -163,7 +169,7 @@ const Login = async(req,res)=>{
             if(err){
                 return res.json(err)
             }
-            res.json({msg: 'Logout Successfully'})
+            res.redirect("/sign-in")
         })
     }
 
