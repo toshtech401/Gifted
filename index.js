@@ -31,7 +31,8 @@ app.use(passport.session())
 app.use('/', router)
 
 
-app.set('view engine', 'ejs' );
+app.set('view engine', 'ejs');
+
 
 
 

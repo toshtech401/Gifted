@@ -6,7 +6,6 @@ const nodemailer = require('nodemailer');
 const passport = require('passport');
 const UserModel = require('../Model/User');
 const referralModel = require('../Model/referral')
-const planModel = require('../Model/Plan');
 const Wallet = require("../Model/Wallet");
 const baseUrl = process.env.base_url;
 
@@ -32,21 +31,23 @@ const CreateAccount = async (req, res) => {
             return res.json({ error: 'User already exists. Please sign in to continue!' });
         }
 
+        const refLink = `${baseUrl}/sign-up?ref=${username}`
+
+
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(req.body.password, salt);
 
         const referrer = await UserModel.findOne({referralCode: ref})
         if(!referrer){
 
-            const refLink = `${baseUrl}/sign-up?ref=${username}`
 
         const newUser = new UserModel({
             email,
-            username,
+            username : username.toLowerCase(),
             password: hashedPassword,
             plan_type,
             referralCode:username,
-            isPaid: true,
+            isPaid: false,
             referral_link: refLink
         });
 
@@ -70,24 +71,23 @@ const CreateAccount = async (req, res) => {
                 })
             }else{
 
-                const refLink = `${baseUrl}/sign-up?ref=${username}`
                 const newUser = new UserModel({
                     email,
-                    username,
+                    username : username.toLowerCase(),
                     password: hashedPassword,
                     plan_type,
                     referralCode:username,
-                    isPaid: true,
+                    isPaid: false,
                     referral_link: refLink
                 });
 
                  await referralModel.create({
-                    referrer: referrer._id,
+                    referedBy: referrer.username,
                     referred: newUser._id,
-                    paymentMade: false,
+                    paymentMade: true,
                   });
 
-                  const commission = await referralModel.findOne({referrer : referrer._id});
+                  const commission = await referralModel.findOne({referedBy : referrer.username});
 
                   if(commission){
                     commission.referralCommission +=200;
@@ -114,7 +114,7 @@ const CreateAccount = async (req, res) => {
                         console.log(err);
                     }
                     passport.authenticate('local')(req,res, function(err){
-                        res.json({msg: 'Signed Up Successfully'})
+                        return res.redirect('/sign-in')
                     })
                 })
             }

@@ -4,7 +4,6 @@ const {Schema, model} = mongoose;
 const QuizSchema = new Schema({
     question : {
         type: String,
-        required : true
     },
    options_a : {
         type : String,

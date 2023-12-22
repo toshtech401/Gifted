@@ -11,34 +11,39 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
-<body class=" font-poppins">
-    <div class="every">
-        
-            <div class="head">
-                <h2>Question 1 - 15</h2>
-                <h4 class="choose">Note: Choose Your Answer Below And Press Continue Once Done.</h4>
-            </div>
-            <div class="all">
-                
-                <div class="up">
-                    <input class="upp" type="text">
+<body>
+    <section>
+        <div>
+            <%-include ('sidebar') %>
+        </div>
+        <div class="every">
+            
+                <div class="head">
+                    <h2>Question 1 - 15</h2>
+                    <h4 class="choose">Note: Choose Your Answer Below And Press Continue Once Done.</h4>
                 </div>
-                <div class="down">
-                    <div class="dup">
-                        <input class="ddown" type="text">
-                        <input class="ddown" type="text">
+                <div class="all">
+                    
+                    <div class="up">
+                        <h1>Question</h1>
                     </div>
-                    <div class="dd">
-                        <input class="ddown" type="text">
-                        <input class="ddown" type="text">
+                    <div class="down">
+                        <div class="dup">
+                            <label for="options" class="ddown"><input id="options"  type="radio" name="options"></label>
+                            <label for="options" class="ddown"><input id="options"  type="radio" name="options"></label>
+                        </div>
+                        <div class="dd">
+                            <label for="options" class="ddown"><input id="options"  type="radio" name="options"></label>
+                            <label for="options" class="ddown"><input id="options"  type="radio" name="options"></label>
+                        </div>
                     </div>
+    
+            
                 </div>
-
-        
-            </div>
-            <div>
-                <button class="nd">Continue</button>
-            </div>
-      </div>
+                <div>
+                    <button class="nd">Continue</button>
+                </div>
+          </div>
+    </section>
 </body>
 </html>

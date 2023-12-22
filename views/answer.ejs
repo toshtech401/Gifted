@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz</title>
+  <script>
+    function submitForm() {
+      document.getElementById('quizForm').submit();
+    }
+
+    function startTimer() {
+      setTimeout(submitForm, 30000);
+    }
+  </script>
+</head>
+<body onload="startTimer()">
+  <h1>Quiz</h1>
+  <% quizzes.forEach((quiz, index) => { %>
+    <h3><%= quiz.question %></h3>
+    <form id="quizForm" action="/submit" method="post">
+      <% quiz.options.forEach((option, i) => { %>
+        <input type="radio" name="quiz<%= index %>" value="<%= i %>"> <%= option %><br>
+      <% }) %>
+      <input type="hidden" name="correctOption" value="<%= quiz.correctOption %>">
+      <button type="submit">Submit</button>
+    </form>
+  <% }) %>
+</body>
+</html>

@@ -13,8 +13,8 @@
 <body class=" font-poppins flex flex-col ">
     <section class="sec1">
         <nav class="nav py-[1%] flex justify-around  items-center gap-80">
-            <div class="img1">
-                <img width="120" src="/images/Gifted-Brainz-PNG.png" alt="">
+            <div class="logo">
+                <img class=" h-[20vh]" src="/images/Gifted-Brainz-PNG.png" alt="">
             </div>
             <div>
                 <ul class="links flex items-center font-semibold gap-[80px] ">
@@ -35,6 +35,19 @@
                 <div class="line2"></div>
             </div>
         </nav>
+        <div class="mobile">
+            <ul class="links flex items-center font-semibold gap-[80px] ">
+                <li class=" hover:text-[#5852FE] duration-300 cursor-pointer">Course</li>
+                <li class=" hover:text-[#5852FE] duration-300 cursor-pointer">Career</li>
+                <li class=" hover:text-[#5852FE] duration-300 cursor-pointer">About Us</li>
+                <li class=" bg-[white] 
+                text-[#5852FE] px-[40px] py-[10px] 
+                rounded-[15px] border-[2px] 
+                border-[#5852FE] hover:bg-transparent
+                 hover:text-[#5852FE] duration-300 
+                 cursor-pointer"><a href="/sign-in">Sign In</a></li>
+            </ul>
+        </div>
         <main class="mmain py-[2%] float-right flex items-center gap-16">
             <div class="headd flex flex-col gap-10 ">
                 <div class="head1 flex flex-col gap-3">
@@ -501,15 +514,15 @@
         </div>
     </section>
     <section>
-        <div class="llogo flex gap-3 items-center justify-center">
+        <div class="llogo flex gap-3">
             <div>
-                <img class="img1" width="200" src="/images/Gifted-Brainz-PNG (2).png" alt="">
+                <img class="img1" src="/images/Gifted-Brainz-PNG (2).png" alt="">
             </div>
             <div class=" flex gap-6 items-center">
-                <img class="img2"  width="60" src="/images/Mask group.png" alt="">
-                <img class="img2"  width="60" src="/images/Mask group (2).png" alt="">
-                <img  class="img2" width="60" src="/images/Frame (2).png" alt="">
-                <img class="img2"  width="60" src="/images/Frame (3).png" alt="">
+                <img class="img2"  src="/images/Mask group.png" alt="">
+                <img class="img2"  src="/images/Mask group (2).png" alt="">
+                <img  class="img2" src="/images/Frame (2).png" alt="">
+                <img class="img2"  src="/images/Frame (3).png" alt="">
             </div>
         </div>
     </section>
@@ -519,7 +532,7 @@
                 <div>
                 <h1 class="text-[white] text-[20px] font-semibold">Join Our Newsletter</h1>
                 </div>
-                <div class="ddiv flex bg-[white] px-[20px] py-[10px] rounded-[10px] w-[25vw] justify-center gap-6">
+                <div class="ddiv flex bg-[white] px-[20px] py-[10px] rounded-[10px] w-[35vw] justify-center gap-6">
                     <input type="email" class="iinp w-[15vw] h-[4vh] text-[black]"   placeholder="Hello@Smartquiz.com" >
                     <button class=" text-[#D80D0D] font-semibold">JOIN NOW</button>
                 </div>
@@ -587,22 +600,25 @@
             }
     </script> -->
     <script>
-        var btns = document.querySelectorAll(".btn");
+        // var btns = document.querySelectorAll(".btn");
       
-        btns.forEach(function(btn) {
-          btn.addEventListener("click", function() {
-            // Find the corresponding content and line for the clicked button
-            var content = btn.nextElementSibling;
-            var line = btn.querySelector(".line");
+        // btns.forEach(function(btn) {
+        //   btn.addEventListener("click", function() {
+        //     // Find the corresponding content and line for the clicked button
+        //     var content = btn.nextElementSibling;
+        //     var line = btn.querySelector(".line");
       
-            // Toggle the visibility of content
-            content.classList.toggle("hidden");
+        //     // Toggle the visibility of content
+        //     content.classList.toggle("hidden");
       
-            // Toggle the visibility of the line
-            line.style.visibility = (content.classList.contains("hidden")) ? "visible" : "hidden";
+        //     // Toggle the visibility of the line
+        //     line.style.visibility = (content.classList.contains("hidden")) ? "visible" : "hidden";
             
-          });
-        });
+        //   });
+        // });
+        document.querySelector('.menu').addEventListener('click', ()=>{
+    document.querySelector('.mobile').classList.toggle("display")
+})
       </script>
 
 </body> 
