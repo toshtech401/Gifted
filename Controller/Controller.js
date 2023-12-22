@@ -99,6 +99,10 @@ const spin = (req, res)=>{
     res.render('SpinAndWin')
 }
 
+const createQuiz = (req, res)=>{
+    res.render('createQuiz')
+}
+
 module.exports = {
     home,
     signUp, 
@@ -116,5 +120,6 @@ module.exports = {
     payment,
     planpage,
     referral,
-    spin
+    spin,
+    createQuiz
 }
