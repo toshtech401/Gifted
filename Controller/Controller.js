@@ -141,6 +141,7 @@ const confirmPayment = async(req, res)=>{
 
 }
 
+
 module.exports = {
     home,
     signUp, 

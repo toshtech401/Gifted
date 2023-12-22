@@ -9,7 +9,7 @@ const createQuestion = async (req, res)=>{
         //     return res.status(400).json({error: "all is required"})
         // } 
         const newQuestion = await Quiz.create(req.body)
-        return res.status(201).json(newQuestion)
+        return res.redirect('/admin/create-quiz')
     } catch (error) {
         console.log(error)
         return res.status(500).json({error: "Internal server error"})
@@ -20,8 +20,9 @@ const createQuestion = async (req, res)=>{
 
 const getAllQuestion = async (req, res)=>{
     try {
-        const questions = await Quiz.find()
-        return res.status(200).json(questions)
+        const questions = await Quiz.find();
+        const qst = questions.map(qst => qst.toObject())
+        return res.status(200).json(qst)
     } catch (error) {
         console.log(error)
         return res.status(500).json({error: "Internal server error"})
@@ -47,24 +48,18 @@ const getQuestion = async (req, res)=>{
 
 
 const answeredQuestion = async (req, res)=>{
-    try {
-        const user = req.user
-        const {id} = req.params;
-        const {chosenOption} = req.body
-        const avail_qst = await Quiz.findOne({_id:id});
-        if(!avail_qst) return res.json({error: "Question not available right now"})
+    const user = req.user
+    const {chosenOption} = req.body
+    const avail_qst = await Quiz.find();
+    const p_on_correctAns = avail_qst.points;
+    if(!avail_qst) return res.json({error: "Question not available right now"})
 
+    // Check if choosen answer is correct
 
-        if(avail_qst.correctAnswer === chosenOption){
-            user.points +=20;
-            await UserModel.save();
-            return res.json({msg: "Question answered successfully"})
-        }else{
-            return res.json({error: "Incorrect answer"})
-        }
-    } catch (error) {
-        console.log(error);
-        return res.status(500).json({error: "Internal Server Error..."})
+    if(chosenOption === avail_qst.correctAnswer){
+        user.cp = p_on_correctAns;
+        await UserModel.save();
+        return res.json({msg: "Question answered successfully"})
     }
 
 

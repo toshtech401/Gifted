@@ -7,8 +7,10 @@ const { initializeAndRedirect, fundWallet } = require('../Controller/WalletContr
 const { createCourse, getAllCourse } = require('../Controller/createCourse');
 const { updateProfile } = require('../Controller/updateProfile');
 const { userDashboard} = require('../Controller/userDashboard');
+const hasPaid = require("../MiddleWare/hasPaid")
 const { home, signUp, signIn, dashboard, gethelp, getsupport, congratulation, payment, planpage, referral, spin, coursePage, leaderBoard, quizPage, quizSelection, setting, spinWheel, createQuiz, makePayment, confirmPayment } = require('../Controller/Controller');
-const hasPaid = require('../MiddleWare/hasPaid');
+
+
 
 
 
@@ -35,11 +37,20 @@ router.route('/quizPage').get(quizPage)
 router.route('/quizSelection').get(quizSelection)
 router.route('/settings').get([hasPaid],setting)
 router.route('/spinWheel').get([hasPaid],spinWheel)
+router.route('/dashboard').get(dashboard)
+router.route('/spin').get(spin)
+router.route('/admin/create-quiz').get(createQuiz)
+router.route('/coursepage').get(coursePage)
+router.route('/leaderboard').get(leaderBoard)
+router.route('/quiz-page').get(quizPage)
+router.route('/quiz-selection').get(quizSelection)
+router.route('/settings').get(setting)
+router.route('/spinWheel').get(spinWheel)
 router.route('/sign-up').post(CreateAccount)
 router.route('/sign-in').post(Login)
 router.route('/logout').get(Logout)
 router.route('/contact').post(contactForm)
-router.route('/create-quiz').post(createQuestion)
+router.route('/admin/create-quiz').post(createQuestion)
 router.route('/get-quiz').get(getAllQuestion)
 router.route('/quiz/:id').get(getQuestion)
 router.route('/answered/:id').post(answeredQuestion)
