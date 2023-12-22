@@ -47,6 +47,9 @@ const userSchema = new Schema({
     referrals:{
         type:mongoose.Schema.ObjectId,
         ref: 'Referral'
+    },
+    referraL_link:{
+        type: String
     }
 })
 

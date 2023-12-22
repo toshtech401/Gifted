@@ -13,37 +13,33 @@
 </head>
 <body class=" font-poppins">
     <div class="every">
-        
-            <div class="head">
-                <h2>Get Supports</h2>
-                <h4 class="choose">contact us with your message. our team will get back to you soon.</h4>
+        <div class="head">
+            <h2>Get Supports</h2>
+            <h4 class="choose">contact us with your message. our team will get back to you soon.</h4>
+        </div>
+        <form action="/contact" method="post">
+            <div class="all">   
+                <div>
+                    <label for="Username">Username</label><br>
+                    <input class="inp" type="text" name="username">
+                </div>
+                <div>
+                    <label for="Username">Your Email</label><br>
+                    <input class="inp" type="email" name="email">
+                </div>
+                <div>
+                    <label for="Username">Subject</label><br>
+                    <input class="inp" type="text" name="subject">
+                </div>
+                <div>
+                    <label for="Username">Type Your Message Here</label><br>
+                    <textarea cols="60" rows="10" name="message"></textarea>
+                </div>
             </div>
-            
-                <form action="">
-                    <div class="all">   
-                        <div>
-                            <label for="Username">Username</label><br>
-                            <input class="inp" type="text" name="Username" id="">
-                        </div>
-                        <div>
-                            <label for="Username">Your Email</label><br>
-                            <input class="inp" type="email" name="Username" id="">
-                        </div>
-                        <div>
-                            <label for="Username">Type Your Message Here</label><br>
-                            <textarea name="" id="" cols="60" rows="10"></textarea>
-                        </div>
-                    </div>
-                    <div>
-                        <button class="nd">
-                            Submit
-                        </button>
-                    </div>
-
-
-
-                </form>
-            
-      </div>
+            <div>
+                <button class="nd" type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
 </body>
 </html>
