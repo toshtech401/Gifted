@@ -7,7 +7,8 @@ const { initializeAndRedirect, fundWallet } = require('../Controller/WalletContr
 const { createCourse, getAllCourse } = require('../Controller/createCourse');
 const { updateProfile } = require('../Controller/updateProfile');
 const { userDashboard} = require('../Controller/userDashboard');
-const { home, signUp, signIn, dashboard, gethelp, getsupport, congratulation, payment, planpage, referral, spin, coursePage, leaderBoard, quizPage, quizSelection, setting, spinWheel, createQuiz, makePayment } = require('../Controller/Controller');
+const { home, signUp, signIn, dashboard, gethelp, getsupport, congratulation, payment, planpage, referral, spin, coursePage, leaderBoard, quizPage, quizSelection, setting, spinWheel, createQuiz, makePayment, confirmPayment } = require('../Controller/Controller');
+const hasPaid = require('../MiddleWare/hasPaid');
 
 
 
@@ -21,18 +22,19 @@ router.route('/createQuiz').get(createQuiz)
 router.route('/payment').get(payment)
 router.route('/planpage').get(planpage)
 router.route('/referral').get(referral)
-router.route('/getsupport').get(getsupport)
+router.route('/getsupport').get([hasPaid],getsupport)
 router.route('/sign-up').get(signUp)
+router.route('/confirm-payment').post(confirmPayment)
 router.route('/sign-in').get(signIn)
 router.route('/makePayment').get(makePayment)
-router.route('/dashboard').get(dashboard)
-router.route('/spin').get(spin)
-router.route('/coursepage').get(coursePage)
-router.route('/leaderboard').get(leaderBoard)
+router.route('/dashboard').get([hasPaid], dashboard)
+router.route('/spin').get([hasPaid],spin)
+router.route('/coursepage').get([hasPaid],coursePage)
+router.route('/leaderboard').get([hasPaid],leaderBoard)
 router.route('/quizPage').get(quizPage)
 router.route('/quizSelection').get(quizSelection)
-router.route('/settings').get(setting)
-router.route('/spinWheel').get(spinWheel)
+router.route('/settings').get([hasPaid],setting)
+router.route('/spinWheel').get([hasPaid],spinWheel)
 router.route('/sign-up').post(CreateAccount)
 router.route('/sign-in').post(Login)
 router.route('/logout').get(Logout)

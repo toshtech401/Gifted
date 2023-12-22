@@ -4,7 +4,7 @@ const passportLocalMongoose = require('passport-local-mongoose')
 const {Schema, model} = mongoose
 
 const referralSchema = new mongoose.Schema({
-    referrer: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+  referedBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
     referred: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
     referralCommission:{
         type:Number,

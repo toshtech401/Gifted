@@ -1,6 +1,8 @@
 const Points = require("../Model/Points")
+const UserModel = require("../Model/User")
 const Wallet = require("../Model/Wallet")
 const referralModel = require("../Model/referral")
+require('dotenv').config()
 
 const home = (req, res)=>{
     res.render('home')
@@ -102,7 +104,41 @@ const createQuiz = (req, res)=>{
     res.render('createQuiz')
 }
 const makePayment= (req, res)=>{
-    res.render('pay')
+    let amount_to_pay;
+    const user = req.user
+    const planType = user.plan_type;
+    const email = user.email
+
+    if(planType === 'weekly'){
+        amount_to_pay = 2400
+    }else(amount_to_pay = 4600)
+    res.render('pay', {amount_to_pay, email})
+}
+
+const confirmPayment = async(req, res)=>{
+    const {reference, email} = req.body;
+    if(!reference){
+        return res.redirect('/makePayment')
+    }
+
+    const baseurl = 'https://api.paystack.co/transaction/verify/' + reference;
+
+    const response = await fetch(baseurl, {
+        headers:{
+            Authorization: `Bearer ${process.env.SECRET_KEY}`
+        }
+    })
+        .then(response => response.json())
+
+
+    if(response.status === true){
+       const user = await UserModel.findOne({email});
+       if(!user) return console.log("no user with " + email);
+       user.isPaid = true;
+       user.save()
+    }
+    
+
 }
 
 module.exports = {
@@ -124,5 +160,6 @@ module.exports = {
     referral,
     spin,
     createQuiz,
-    makePayment
+    makePayment,
+    confirmPayment
 }
