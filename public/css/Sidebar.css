@@ -1,261 +1,139 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Fire Sans',sans-serif;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-.app{
-    display: flex;
-    width: 100%;
+body {
+  margin: 0;
+  background: #121212;
+}
+
+button {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+.sidebar {
+  position: fixed;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    width: 260px; /* Set default width */
     min-height: 100vh;
-    background-color: firebrick;
+    background: white;
+    transition: width 0.4s;
 }
 
-.sidebar{
-    flex: 1 1 0;
-    max-width: 250px;
-    padding: 2rem 1rem;
-    background-color: #fff;
-    z-index: 999;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    height: 100%;
-    transition: var(--trans-05);
-    /* background-color: lawngreen; */
+body.open .sidebar {
+  width: 72px;
 }
 
-.sidebar.close{
-    width: 89px;
+.sidebar-inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 300px;
+  background: white;
+  color: black;
+
+}
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 72px;
+  padding: 0 20px;
+  background-color: whitesmoke;
 }
 
-.sidebar.close a{
-    opacity: 0;
-} 
-.sidebar.close img{
-    width: 90px;
+
+.nav_link.active{
+  background-color: #5852FE;
+  color: white;
 }
-nav{
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-.brain{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px;
-}
-.n_b{
-   width: 30%; 
+.sidebar-inner button{
+  color: black;
 }
 
-.arrow{
-    width: 20px;
-    height: 20px;
-}
-.sidebar.close.arrow{
-    display: none;
-}
-.sidebar h3{
-    color: grey;
-    font-size: 0.75rem;
-    padding: 1.5em;
-    margin-bottom: 0.5em;
+
+
+.sidebar-menu,
+.down {
+    width: 100%; /* Full width initially */
 }
 
-.dash1{
-    background-color: #5852FE;
-    padding: 10px;
-    display: flex;
-    align-items: center;
-    margin-bottom: 30px;
-    gap: 10px;
-    width: 100%;
-    color: white;
+.sidebar-burger {
+  width: 72px;
+  height: 72px;
+  display: grid;
+  place-items: center;
+  background: url(./assets/icon-burger.svg) no-repeat center center;
 }
 
-.dash1 img{
-    width: 20%;
+body.open .sidebar-burger {
+  background: url(./assets/icon-close.svg) no-repeat no-repeat center center;
 }
 
-.run {
-    display: flex;
-    align-items: center;
-    /* background-color: white; */
-    padding-left: 20px;
-    color: white;
-    /* justify-content: center; */
-    gap: 10px;
-    width: 100%;
-}
-.runn {
-    display: flex;
-    align-items: center;
-    padding-left: 20px;
-    color: white;
-    /* justify-content: center; */
-    gap: 10px;
-    width: 100%;
-}
-.imgr{
-    width: 12%;
-}
-.run:hover{
-    background-color: #5852FE;
-    color: white;
-}
- 
-.imaging{
-    width: 13%;
-    
-}
-.menu{
-    margin: o -1rem;
+.sidebar-logo {
+  width: 20%;
 }
 
-.item{
-    display: block;
-    padding: 0.5em;
-    color: black;
-    text-decoration: none;
-    transition: 0.2s linear;
+.sidebar-menu {
+  display: grid;
 }
 
-.item1{
-    display: block;
-    padding: 0.5em;
-    color: white;
-    text-decoration: none;
-    transition: 0.2s linear;
-}
-.item:hover, .item.is-active{
-    background-color: #5852FE;
-    border-right: 5px solid #5852FE;
-    color: white;
-}
-
-.new{
-    background-color: #5852FE;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    margin-top: 10px;
+.sidebar-menu > button {
+  display: flex;
+  gap: 25px;
+  align-items: center;
+  height: 48px;
+  font-family: "Poppins";
+  font-size: 16px;
+  font-weight: 200;
+  letter-spacing: 2px;
+  line-height: 1;
+  padding: 0 25px;
+  color: black;
 }
 
-.content{
-    flex: 1 1 0;
-    padding: 2rem;
+.sidebar-menu > button.has-border {
+  padding-bottom: 5px;
+  margin-bottom: 5px;
 }
 
-.content h1{
-    color: #3c3f58;
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
+.sidebar-menu > button > img {
+  width: 24px;
+  height: 24px;
 }
 
-.content p{
-    color: #707793;
+.sidebar-menu > button > span {
+  color: rgba(0, 0, 0, 0.97);
 }
 
-.menu-toggle{
-    display: none;
-    position: fixed;
-    top: 2rem;
-    right: 2rem;
-    width: 60px;
-    height: 60px;
-    border-radius: 99px;
-    background-color: #fff;
-    cursor: pointer;
+.down{
+  background-color: #5852FE;
+  display:grid;
+  margin-top: 25px;
 }
 
-.hamburger{
-    position: relative;
-    top: calc(50% - 2px);
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 32%;
+.down img{
+  width: 24px;
+  height: 24px;
 }
 
-.hamburger > span,
-.hamburger > span::before,
-.hamburger > span::after {
-    display: block;
-    position: absolute;
-    width: 100%;
-    height: 4px;
-    border-radius: 99px;
-    background-color: #0f0f0f;
-    transition-duration: .25s;
-}
-
-.hamburger > span::before{
-    content: '';
-    top: 8px;
-}
-
-.hamburger > span::after{
-    content: '';
-    top: -8px;
-}
-
-.menu-toggle.is-active .hamburger > span{
-    transform: rotate(45deg);
-}
-
-.menu-toggle.is-active .hamburger > span::before{
-    top: 0;
-    transform: rotate(0deg);
-}
-
-.menu-toggle.is-active .hamburger > span::after{
-    top: 0;
-    transform: rotate(90deg);
-}
-
-@media screen and (max-width: 1024px) {
-    .sidebar{
-        max-width: 200px;
-    }
-    .sidebar.close{
-        /* display: none; */
-    }
-    .arrow{
-        display: none;
-    }
-    .sidebar.close a{
-        opacity: 1;
-    } 
-}
-
-@media screen and (max-width: 768px) {
-    .menu-toggle{
-        display: block;
-    }
-    .sidebar.close a{
-        opacity: 1;
-    } 
-    .content{
-        padding-top: 8rem;
-    }
-    .arrow{
-        display: none;
-    }
-    .sidebar.close{
-        /* display: none; */
-    }
-    .sidebar{
-        display: block;
-        position: fixed;
-        top: 0;
-        left: -300px;
-        height: 100vh;
-        width: 100%;
-        max-width: 300px;
-        transition: 0.2s linear;
-    }
-    .sidebar.is-active{
-        left: 0;
-    }
+.down > button{
+  display: flex;
+  gap: 25px;
+  align-items: center;
+  height: 55px;
+  font-family: "Poppins";
+  font-size: 16px;
+  font-weight: 200;
+  letter-spacing: 2px;
+  line-height: 1;
+  padding: 0 25px;
+  color: white;
 }

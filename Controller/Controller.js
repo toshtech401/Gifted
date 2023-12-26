@@ -141,6 +141,10 @@ const confirmPayment = async(req, res)=>{
 
 }
 
+const sidebar = (req, res)=>{
+    res.render("Sidebar")
+}
+
 
 module.exports = {
     home,
@@ -162,5 +166,6 @@ module.exports = {
     spin,
     createQuiz,
     makePayment,
-    confirmPayment
+    confirmPayment,
+    sidebar
 }

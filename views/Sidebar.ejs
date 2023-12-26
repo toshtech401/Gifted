@@ -7,87 +7,71 @@
     <link rel="stylesheet" href="/css/Sidebar.css">
 </head>
 <body>
-    <div class="app">
-        
-        <div class="menu-toggle">
-            <div class="hamburger">
-                <span></span>
-            </div>
+    <nav class="sidebar">
+      <div class="sidebar-inner">
+        <header class="sidebar-header">
+          <img onclick="toggleSidebar()" src="/images/gifted_logo.png" class="sidebar-logo" />
+          <button
+            type="button"
+            class="sidebar-burger"
+            onclick="toggleSidebar()"
+          ></button>
+        </header>
+        <nav class="sidebar-menu">
+          <button type="button" class="nav_link active">
+            <img src="/images/Dashboard (1).png" />
+            <span>Dashboard</span>
+          </button>
+          <button type="button" class="nav_link">
+            <img src="/images/Group 31.png" />
+            <span>Quiz competition</span>
+          </button>
+          <button type="button" class="nav_link">
+            <img src="/images/Group 33.png" />
+            <span>Quiz Leaderboard</span>
+          </button>
+          <button type="button" class="nav_link">
+            <img src="/images/RGB Color Wheel.png" />
+            <span>Spin To Win</span>
+          </button>
+          <button type="button" class="nav_link">
+            <img src="/images/Graduation Cap.png" />
+            <span>Courses</span>
+          </button>
+          <button type="button" class="nav_link">
+            <img src="/images/Bank Cards.png" />
+            <span>Payment</span>
+          </button>
+          <button type="button" class="nav_link">
+            <img src="/images/Collab.png" />
+            <span>Referrals History</span>
+          </button>
+          <button type="button" class="nav_link">
+            <img src="/images/Order History.png" />
+            <span>Earnings History</span>
+          </button>
+          
+        </nav>
+        <div class="down">
+          <button type="button">
+            <img src="/images/Group 34.png" />
+            <span>Settings</span>
+          </button>
+          <button type="button" >
+            <img src="/images/Group 35.png" />
+            <span>Get help</span>
+          </button>
+          <button type="button">
+            <img src="/images/Group 36.png" />
+            <span>Community</span>
+          </button>
         </div>
+      </div>
+    </nav>
 
-        <aside class="sidebar close">
-            <div class="brain">
-                <img src="/images/gifted_logo.png" class="n_b" alt="">
-                <img src="/images/Arrow 4.png" class="arrow toggle" alt="">
-            </div>
-
-            <div class="dash1">
-                <img src="/images/Dashboard.png" alt="">
-
-                <a href="">Dashboard</a>
-            </div>
-
-            <nav>
-                <div class="run">
-                    <div class="imaging"><img src="/images/Running.png" alt=""></div>
-
-                    <a href="" class="item">Quiz Competition</a>
-                </div>
-
-                <div class="run">
-                    <div class="imgr"><img src="/images/Group 33.png" alt=""></div>
-                    
-                    <a href="" class="item">Quiz Leaderboard</a>
-                </div>
-
-                <div class="run">
-                    <img class="imgr" src="/images/RGB Color Wheel.png" alt="">
-                    <a href="" class="item">Spin to Win</a>
-                </div>
-
-                <div class="run">
-                    <img class="imgr" src="/images/Graduation Cap.png" alt="">
-                    <a href="" class="item">Courses</a>
-                </div>
-
-                <div class="run">
-                    <img class="imgr" src="/images/Bank Cards.png" alt="">
-                    <a href="" class="item">Payment</a>
-                </div>
-
-                <div class="run">
-                    <img class="imgr" src="/images/Collaboration Female Male.png" alt="">
-                    <a href="" class="item">Referral History</a>
-                </div>
-
-                <div class="run">
-                    <img class="imgr" src="/images/Order History.png" alt="">
-                    <a href="" class="item">Earnings History</a>
-                </div>
-            </nav>
-
-            <nav class="new">
-                <div class="runn">
-                    <img class="imgr" src="/images/Group 34.png" alt="">
-                    <a href="" class="item1">Settings</a>
-                </div>
-
-                <div class="runn">
-                    <img class="imgr" src="/images/Group 35.png" alt="">
-                    <a href="" class="item1">Get Help</a>
-                </div>
-
-                <div class="runn">
-                    <img class="imgr" src="/images/Group 36.png" alt="">
-                    <a href="" class="item1">Community</a>
-                </div>
-            </nav>
-        </aside>
-
-        
-
-    </div>
-
+    <script type="text/javascript">
+      const toggleSidebar = () => document.body.classList.toggle("open");
+    </script>
     <script src="/js/sidebar.js"></script>
-</body>
+  </body>
 </html>
