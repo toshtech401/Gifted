@@ -1,9 +1,11 @@
-const UserModel= require('../Model/User');
+require('dotenv').config();
+const ContactModel= require('../Model/User');
 const nodemailer = require('nodemailer');
+const UserModel = require('../Model/User')
 
 const contactForm =  async (req, res) => {
   try {
-    const { name, email, subject, message } = req.body;
+    const {username, email, subject, message} = req.body;
 
     const transporter = nodemailer.createTransport({
         service: 'Gmail',
@@ -14,10 +16,10 @@ const contactForm =  async (req, res) => {
     });
 
     const mailOptions = {
-      from: "process.env.my_email",
-      to:  email.UserModel,
-      subject: subject || 'Contact Form Submission',
-      text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`,
+        from: email,
+        to: process.env.my_email,
+        subject: `Subject: ${subject}`,
+        text: `Name: ${username}\n Email: ${email}\n Message:${message}`
     };
 
     await transporter.sendMail(mailOptions);
