@@ -23,7 +23,7 @@
             <div class="spinBtn">Spin</div>
             <div class="wheel">
                 <div class="number" style="--i:1;--clr:#ED1C24; ">
-                    <span>Empty</span>
+                    <span class="empty">Empty</span>
                 </div>
                 <div class="number" style="--i:2;--clr:#2E3192; ">
                     <span>5 Pts</span>
@@ -59,12 +59,16 @@
         let wheel = document.querySelector('.wheel')
         let spinBtn = document.querySelector('.spinBtn')
         let value = Math.ceil(Math.random() * 3600);
+        const span = document.querySelector(".empty")
 
         spinBtn.onclick = function(){
+            if(value.length > 0){
+                alert(value)
+            }
             wheel.style.transform = "rotate(" + value + "deg)"  
-            value += Math.ceil(Math.random() * 3600);
-            alert(value)
+                value += Math.ceil(Math.random() * 100);
         }
+
         
     </script>
 </body>
