@@ -66,7 +66,7 @@ const CreateAccount = async (req, res) => {
                         console.log(err);
                     }
                     passport.authenticate('local')(req,res, function(err){
-                        res.json({msg: 'Signed Up Successfully'})
+                        return res.redirect('/sign-in')
                     })
                 })
             }else{

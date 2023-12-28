@@ -6,7 +6,6 @@
 
 body {
   margin: 0;
-  background: #121212;
 }
 
 button {
@@ -17,11 +16,7 @@ button {
 }
 
 .sidebar {
-  position: fixed;
-    overflow: hidden;
-    top: 0;
-    left: 0;
-    width: 260px; /* Set default width */
+    width: 300px;
     min-height: 100vh;
     background: white;
     transition: width 0.4s;
@@ -30,8 +25,11 @@ button {
 body.open .sidebar {
   width: 72px;
 }
-
-.sidebar-inner {
+body.open .sidebar .nav_link{
+  width: 72px;
+  display: none;
+}
+/* .sidebar-inner {
   position: absolute;
   top: 0;
   left: 0;
@@ -39,7 +37,7 @@ body.open .sidebar {
   background: white;
   color: black;
 
-}
+} */
 .sidebar-header {
   display: flex;
   align-items: center;
@@ -78,7 +76,7 @@ body.open .sidebar-burger {
 }
 
 .sidebar-logo {
-  width: 20%;
+  width: 20%!important;
 }
 
 .sidebar-menu {
