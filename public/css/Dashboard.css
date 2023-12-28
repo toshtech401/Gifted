@@ -8,16 +8,33 @@ body{
     /* justify-content: center;
     width: 100%; */
 }
-.dash{
-    gap: 100px;
+.dash-section{
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
 }
+.dash{
+    /* gap: 100px; */
+    display: flex;
+    padding: 0 20px;
+    justify-content: space-between;
+    width: 100%!important;
+    /* background-color: yellow; */
+}
+.flex-left{
+    padding-right: 25px;
+}
+/* .dashboard{ */
+    /* background-color: green; */
+/* } */
 input{
     height: 5vh;
     outline: none;
 }
 .flex{
     display: flex;
-    gap: 30px;
+    /* gap: 30px; */
+    width: 100%;
 }
 .tote{
 background-color: #5852FE;
@@ -78,7 +95,10 @@ table{
     font-weight: 500;
 }
 .tab{
-    gap: 100px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    /* gap: 100px; */
     
 }
 .wel{
@@ -103,19 +123,21 @@ td, th{
 .all{
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
     gap: 40px;
+    width: 100%;
+    padding: 0 12px;
+    height: 100vh;
+    overflow-y: scroll;
 }
 .up{
     display: flex;
     flex-direction: column;
-    
     gap: 20px;
 }
 .earn{
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    /* align-items: flex-start; */
     gap: 10px;
 }
 @media screen and (max-width:950px) {

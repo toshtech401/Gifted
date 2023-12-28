@@ -16,17 +16,17 @@
 
 
 <body>
-    <section class=" flex">
-        <div class="side ">
+    <section class="flex dash-section">
+        <div class="side">
             <%-include('sidebar')%>
         </div>
-        <div class="all ">
+        <div class="all">
             <div class="up">
-             <div class="dash flex items-center gap-[1000px]">
-                <div><h1 class="fgg text-[20px] font-semibold">Dashboard</h1></div>
-                <div class=" flex items-center gap-[30px]">
+             <div class="dash flex w-full items-center justify-between">
+                <div class="flex lg:w-[5%] dashboard"><h1 class="fgg text-[20px] font-semibold">Dashboard</h1></div>
+                <div class="flex-left flex items-center lg:w-[60%]">
                     <div class=" border-[2px] rounded-[20px] flex items-center px-[20px]">
-                        <input class="input w-[40vw]  outline-none border-none" type="text">
+                        <input class="input w-[40vw]  outline-none border-none bg-none" type="text">
                         <i class='bx bx-search'></i>
                     </div>
                     <div class="ghy flex items-center gap-[30px]">
@@ -35,7 +35,19 @@
                     </div>
                 </div>
             </div>
-            <div class="wel flex flex-col">
+            <!-- I am coming back to this... -->
+            <!-- <div class="w-full flex flex-row justify-between">
+                <div class="w-[20%]">
+                    <h1>Dashboard</h1>
+                </div>
+                <div class="flex gap-sm">
+                    <div class="flex gap-2">
+                        <input class="p-2 " type="text" name="" id="">
+                        <i><i class='bx bx-search'></i></i>
+                    </div>
+                </div>
+            </div> -->
+            <div class="wel">
                 <div><h1 class="text-[30px] font-semibold">Welcome, <%= userData.name %></h1></div>
                 <div class="tab flex">
                     <div class="tote">
