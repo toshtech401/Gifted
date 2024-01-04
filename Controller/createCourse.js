@@ -43,9 +43,64 @@ const getAllCourse =  async(req, res) =>{
       }
 }
 
+const getCourse = async(req,res)=>{
+    try {
+        const {courseId} = req.params;
 
+        const course = await Course.findById(courseId);
+
+        if(!course) return res.status(404).json({msg: "Course not found"})
+
+        return res.json({course})
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({error: "Internal Server error"})
+    }
+}
+
+const updateCourse = async(req, res)=>{
+    try {
+        const {courseId} = req.params;
+        const upCourse = req.body;
+
+        const updatedCourse = await Course.findByIdAndUpdate(
+            courseId,
+            upCourse,
+            {new:true, runValidators: true}
+        );
+        if(!updatedCourse) return res.status(404).json({msg: "Course not found"})
+
+        return res.json({msg: "Course updated successfully", course: updatedCourse})
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({error: "Internal Server error"})
+    }
+}
+
+
+
+const deleteCourse = async(req, res)=>{
+    try {
+        const {courseId} = req.params
+
+        // use findByIdAndDelete to delete the course
+        const deletedCourse = await Product.findByIdAndDelete(courseId)
+
+        if (!deletedCourse){
+            return res.status(404).json({error: 'Course not found', success: false});
+        }
+
+        return res.json({message: "Course deleted", business: deletedCourse, success: true});
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({error: "Server Error", success: false})
+    }
+}
 
 module.exports = {
     createCourse,
-    getAllCourse
+    getAllCourse,
+    getCourse,
+    updateCourse,
+    deleteCourse
 }
