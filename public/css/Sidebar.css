@@ -29,15 +29,7 @@ body.open .sidebar .nav_link{
   width: 72px;
   display: none;
 }
-/* .sidebar-inner {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 300px;
-  background: white;
-  color: black;
 
-} */
 .sidebar-header {
   display: flex;
   align-items: center;
@@ -60,7 +52,7 @@ body.open .sidebar .nav_link{
 
 .sidebar-menu,
 .down {
-    width: 100%; /* Full width initially */
+  width: 100%; 
 }
 
 .sidebar-burger {
