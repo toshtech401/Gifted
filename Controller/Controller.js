@@ -68,7 +68,9 @@ const quizSelection = (req, res) =>{
 }
 
 const setting = (req, res) =>{
-    res.render('Settings')
+    const user = req.user;
+    const id = user._id
+    res.render('Settings', {id, user})
 }
 const spinWheel = (req, res) =>{
     res.render('SpintheWheel')
@@ -141,6 +143,10 @@ const confirmPayment = async(req, res)=>{
 
 }
 
+const sidebar = (req, res)=>{
+    res.render("Sidebar")
+}
+
 
 module.exports = {
     home,
@@ -162,5 +168,6 @@ module.exports = {
     spin,
     createQuiz,
     makePayment,
-    confirmPayment
+    confirmPayment,
+    sidebar
 }

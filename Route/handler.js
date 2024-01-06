@@ -6,9 +6,9 @@ const { verifyAccount, WithdrawFunds } = require('../Controller/WithdrawControll
 const { initializeAndRedirect, fundWallet } = require('../Controller/WalletController');
 const { createCourse, getAllCourse } = require('../Controller/createCourse');
 const { updateProfile } = require('../Controller/updateProfile');
-const { userDashboard} = require('../Controller/userDashboard');
+// const { userDashboard} = require('../Controller/userDashboard');
 const hasPaid = require("../MiddleWare/hasPaid")
-const { home, signUp, signIn, dashboard, gethelp, getsupport, congratulation, payment, planpage, referral, spin, coursePage, leaderBoard, quizPage, quizSelection, setting, spinWheel, createQuiz, makePayment, confirmPayment } = require('../Controller/Controller');
+const { home, signUp, signIn, dashboard, gethelp, getsupport, congratulation, payment, planpage, referral, spin, coursePage, leaderBoard, quizPage, quizSelection, setting, spinWheel, createQuiz, makePayment, confirmPayment, sidebar } = require('../Controller/Controller');
 
 
 
@@ -16,6 +16,7 @@ const router = express.Router()
 
 
 router.route('/').get(home)
+router.route('/sidebar').get(sidebar)
 router.route('/gethelp').get(gethelp)
 router.route('/congratulation').get(congratulation)
 router.route('/createQuiz').get(createQuiz)
@@ -59,6 +60,6 @@ router.route('/fund-wallet').post(fundWallet)
 router.route('/test').get(test)
 router.route('/create-course').post(createCourse)
 router.route('/get-course').get(getAllCourse)
-router.route('/update-profile').patch(updateProfile)
+router.route('/user/:id').post(updateProfile)
 
 module.exports = router;

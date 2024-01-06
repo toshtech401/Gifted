@@ -19,30 +19,30 @@
                 <h4 class="choose">Manage all your Settings in Here.</h4>
             </div>
             
-                <form action="">
+                <form action="/user/<%=id%>" method="post">
                     <div class="all">   
                         <div>
                             
-                            <input class="inps" type="text" name="Username" id="">
+                            <input class="inps" type="text" name="Username">
                         </div>
                         
                         <div>
                             <label for="Username">Username</label><br>
                             <div class="edit">
-                            <input class="inp" type="text" name="Username" id="">
-                            <h4>Edit</h4>
+                            <input class="inp" type="text" name="username" value="<%=user.username %>" id="input1">
+                            <h4 onclick="focususername()" style="cursor: pointer;">Edit</h4>
                             </div>
                         </div>
                         <div>
                             <label for="email">Your Email</label><br>
                             <div class="edit">
-                                <input class="inp" type="email" name="Username" id="">
-                                <h4>Edit</h4>
+                                <input class="inp" type="email" name="email" value="<%= user.email %>" id="input2">
+                                <h4 onclick="focusemail()" style="cursor: pointer;">Edit</h4>
                             </div>
                         </div>
                     </div>
                     <div class="btns">
-                        <button class="nd">
+                        <button type="submit" class="nd">
                             Submit
                         </button>
                         <button class="nd">
@@ -55,5 +55,13 @@
                 </form>
             
       </div>
+      <script>
+        function focususername(){
+            document.getElementById("input1").focus();
+        }
+        function focusemail(){
+            document.getElementById("input2").focus();
+        }
+      </script>
 </body>
 </html>

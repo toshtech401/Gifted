@@ -161,6 +161,9 @@ const Login = async(req,res)=>{
             }
             passport.authenticate('local')(req, res, function(){
                 return res.redirect("/dashboard")
+                // return res.json({msg:"logged in"})
+
+                
             })
         })
     }
@@ -173,5 +176,7 @@ const Login = async(req,res)=>{
             res.redirect("/sign-in")
         })
     }
+
+
 
 module.exports = {CreateAccount, Login, Logout, test}

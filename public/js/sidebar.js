@@ -1,13 +1,16 @@
-const menuToggle = document.querySelector('.menu-toggle')
-const sidebar = document.querySelector('.sidebar')
-const toggle = document.querySelector('.toggle')
+document.addEventListener("DOMContentLoaded", function() {
+  var buttons = document.querySelectorAll('.nav_link');
 
-toggle.addEventListener('click', ()=>{
-    sidebar.classList.toggle('close')
-})
+  buttons.forEach(function(button) {
+    button.addEventListener('click', function() {
+      buttons.forEach(function(btn) {
+        btn.classList.remove('active');
+      });
 
-menuToggle.addEventListener('click', ()=>{
-    menuToggle.classList.toggle('is-active')
-    sidebar.classList.toggle('is-active')
-})
+      button.classList.add('active');
+    });
+  });
+});
 
+
+const toggleSidebar = () => document.body.classList.toggle("open");
