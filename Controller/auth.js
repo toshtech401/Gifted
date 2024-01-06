@@ -15,7 +15,7 @@ const CreateAccount = async (req, res) => {
     const {ref} = req.query;
     try {
         if (!plan_type) {
-            return res.json({ error: 'Plan Type is required to continue!' });
+            return res.redirect("/sign-in")
         }
 
         if (password !== confirmPassword) {
@@ -66,7 +66,7 @@ const CreateAccount = async (req, res) => {
                         console.log(err);
                     }
                     passport.authenticate('local')(req,res, function(err){
-                        res.json({msg: 'Signed Up Successfully'})
+                        return res.redirect('/sign-in')
                     })
                 })
             }else{
@@ -177,6 +177,4 @@ const Login = async(req,res)=>{
         })
     }
 
-
-
-module.exports = {CreateAccount, Login, Logout, test}
+module.exports = {CreateAccount, Login, Logout, test}   
