@@ -161,6 +161,9 @@ const Login = async(req,res)=>{
             }
             passport.authenticate('local')(req, res, function(){
                 return res.redirect("/dashboard")
+                // return res.json({msg:"logged in"})
+
+                
             })
         })
     }
