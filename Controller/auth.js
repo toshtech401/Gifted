@@ -7,12 +7,12 @@ const passport = require('passport');
 const UserModel = require('../Model/User');
 const referralModel = require('../Model/referral')
 const Wallet = require("../Model/Wallet");
+const Points = require("../Model/Points");
 const baseUrl = process.env.base_url;
 
 const CreateAccount = async (req, res) => {
 
     const { plan_type, username, password, email, confirmPassword } = req.body;
-    const {ref} = req.query;
     try {
         if (!plan_type) {
             return res.json({ error: 'Plan Type is required to continue!' });
@@ -37,9 +37,87 @@ const CreateAccount = async (req, res) => {
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(req.body.password, salt);
 
-        const referrer = await UserModel.findOne({referralCode: ref})
-        if(!referrer){
+        const {ref} = req.query;
+        
 
+        if(ref){
+        const referrer = await UserModel.findOne({referralCode: ref})
+        
+        if(referrer){
+                const newUser = new UserModel({
+                    email,
+                    username : username.toLowerCase(),
+                    password: hashedPassword,
+                    plan_type,
+                    referralCode:username,
+                    isPaid: false,
+                    referral_link: refLink
+                });
+
+                await referralModel.create({
+                    referedBy: referrer.username,
+                    referred: newUser._id,
+                    paymentMade: true,
+                });
+
+                const commission = await referralModel.findOne({referedBy : referrer.username});
+
+                if(commission){
+                    commission.referralCommission += 200;
+                    commission.save()
+                    .then()
+                    .catch((err)=>{
+                        next(err)
+                    })
+                }
+
+
+                const userWallet = new Wallet({
+                    user: newUser._id,
+                });
+                userWallet
+                .save()
+                .then()
+                .catch((error)=>{
+                    next(error);
+                });
+
+                const userPoints = new Points({
+                    user: newUser._id,
+                    points:0
+                });
+                userPoints
+                .save()
+                .then()
+                .catch((error)=>{
+                    next(error);
+                });
+
+
+                const userreferral = new referralModel({
+                    user: newUser._id,
+                    referralCommission: 0
+                });
+                userreferral
+                .save()
+                .then()
+                .catch((error)=>{
+                    next(error);
+                });
+
+
+                return UserModel.register(newUser, password, function(err){
+                    if(err){
+                        console.log(err);
+                    }
+                    passport.authenticate('local')(req,res, function(err){
+                        return res.redirect('/sign-in')
+                    })
+                })
+            
+        }
+
+        }
 
         const newUser = new UserModel({
             email,
@@ -61,6 +139,27 @@ const CreateAccount = async (req, res) => {
             next(error);
           });
 
+        const userPoints = new Points({
+            user: newUser._id,
+            points:0,
+        });
+        userPoints
+        .save()
+        .then()
+        .catch((error)=>{
+            next(error);
+        });
+
+        const userreferral = new referralModel({
+            user: newUser._id,
+            referralCommission:0
+        });
+        userreferral
+        .save()
+        .then()
+        .catch((error)=>{
+            next(error);
+        });
         return UserModel.register(newUser, password, function(err){
                     if(err){
                         console.log(err);
@@ -69,58 +168,10 @@ const CreateAccount = async (req, res) => {
                         return res.redirect('/sign-in')
                     })
                 })
-            }else{
 
-                const newUser = new UserModel({
-                    email,
-                    username : username.toLowerCase(),
-                    password: hashedPassword,
-                    plan_type,
-                    referralCode:username,
-                    isPaid: false,
-                    referral_link: refLink
-                });
-
-                 await referralModel.create({
-                    referedBy: referrer.username,
-                    referred: newUser._id,
-                    paymentMade: true,
-                  });
-
-                  const commission = await referralModel.findOne({referedBy : referrer.username});
-
-                  if(commission){
-                    commission.referralCommission +=200;
-                    commission.save()
-                    .then()
-                    .catch((err)=>{
-                        next(err)
-                    })
-                  }
-
-
-                  const userWallet = new Wallet({
-                    user: newUser._id,
-                });
-                userWallet
-                .save()
-                .then()
-                .catch((error)=>{
-                    next(error);
-                });
-
-                  return UserModel.register(newUser, password, function(err){
-                    if(err){
-                        console.log(err);
-                    }
-                    passport.authenticate('local')(req,res, function(err){
-                        return res.redirect('/sign-in')
-                    })
-                })
-            }
     }catch (error) {
         console.error('Error in CreateAccount:', error);
-        res.json({ error: 'Error while signing up new user' });
+        res.json({ error});
         }
 }
 const test = (req,res)=>{

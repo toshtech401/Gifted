@@ -22,19 +22,15 @@ const userSchema = new Schema({
     confirmPassword:{
         type:String,
     },
-    cp: {
-        type:Number,
-        default:0
-    },
-    course_access_point:{
-        type:Number,
-        default:0
-    },
     isAdmin:{
         type:Boolean,
         default:false
     },
     isPaid:{
+        type:Boolean,
+        default:false
+    },
+    has_spin:{
         type:Boolean,
         default:false
     },

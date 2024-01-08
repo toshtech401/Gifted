@@ -52,6 +52,11 @@
             font-size: 16px;
             z-index: 1;
         }
+
+        #spin-btn:disabled{
+            background-color: gray;
+            cursor: not-allowed;
+        }
     </style>
     <title>Spin the Wheel</title>
 </head>
@@ -59,7 +64,7 @@
 
 <div id="wheel-container">
     <h1>Spin The Wheel</h1>
-    <h3>Win And Be Rewarded</h3>
+    <h3 id="disabled">Win And Be Rewarded</h3>
     <div id="wheel"><img src="/images/spining.jpg" alt=""></div>
 </div>
 <button id="spin-btn">Spin now</button>
@@ -67,7 +72,7 @@
 
 <script>
     const wheel = document.getElementById('wheel');
-    const msg = document.getElementById('msg');
+    const msg = document.getElementById('disabled');
     const spinButton = document.getElementById('spin-btn');
 
     const scores = [10, 20, 0, 40, 0, 60, 0, 80, 100];
@@ -80,7 +85,8 @@
         if (today === lastSpinDate) {
             // User has already spun today
             spinButton.disabled = true;
-            msg.textContent = "You have spinned today, come back 2mao"
+            msg.textContent = "You have spinned today, come back 2mao";
+            msg.style.color = 'red'
 
         }
     }
@@ -107,26 +113,29 @@
 
             const score = Math.floor(randomRotation % 100);
             alert(`Your score: ${score}`);
+            async function sendScoreToServer() {
+            // Replace 'http://localhost:2000/spin' with your actual giftedbrainz endpoint
+            const serverEndpoint = 'http://localhost:9000/spin-wheel';
+
+            await fetch(serverEndpoint, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ score }),
+            })
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch(error => console.error('Error:', error));
+        }
+
+        sendScoreToServer()
             window.location.href ="/spinWheel"
         }, 3000);
 
     });
 
-    function sendScoreToServer(score) {
-        // Replace 'http://localhost:2000/spin' with your actual giftedbrainz endpoint
-        const serverEndpoint = 'http://localhost:9000/spinWheel';
-
-        fetch(serverEndpoint, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ score }),
-        })
-        .then(response => response.json())
-        .then(data => console.log(data))
-        .catch(error => console.error('Error:', error));
-    }
+    
 </script>
 
 </body>

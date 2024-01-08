@@ -8,7 +8,8 @@ const referralSchema = new mongoose.Schema({
     referred: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
     referralCommission:{
         type:Number,
-        default:0
+        default:0,
+        required: true
     },
     paymentMade: Boolean,
   },

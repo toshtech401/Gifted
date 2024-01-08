@@ -27,9 +27,9 @@ const dashboard = async(req, res)=>{
         }
 
 
-        const userPoints = await Points.findOne({user: user._id})
-        const userWallet = await Wallet.findOne({user: user._id})
-        const referrals = await referralModel.findOne({user: user._id})
+        const userPoints = await Points.findOne({user: user})
+        const userWallet = await Wallet.findOne({user: user})
+        const referrals = await referralModel.findOne({user: user})
 
         const totalEarnings = userWallet?.current_balance;
         const totalPoints = userPoints?.points
