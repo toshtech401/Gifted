@@ -61,6 +61,6 @@ router.route('/spin-wheel').post(spintheWheel)
 router.route('/test').get(test)
 router.route('/create-course').post(createCourse)
 router.route('/get-course').get(getAllCourse)
-router.route('/update-profile').patch(updateProfile)
+router.route('/user/:id').post(updateProfile)
 
 module.exports = router;
