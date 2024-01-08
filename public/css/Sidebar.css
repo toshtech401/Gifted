@@ -17,7 +17,7 @@ button {
 
 .sidebar {
     width: 300px;
-    min-height: 100vh;
+    height: 60vh;
     background: white;
     transition: width 0.4s;
 }
@@ -115,6 +115,7 @@ body.open .sidebar-burger {
   background-color: #5852FE;
   display:grid;
   margin-top: 25px;
+  height: 40vh;
 }
 
 .down img{
@@ -135,3 +136,5 @@ body.open .sidebar-burger {
   padding: 0 25px;
   color: white;
 }
+
+

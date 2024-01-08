@@ -35,6 +35,21 @@ td, th{
 .earn{
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
     gap: 10px;
+    width: 100%;
+    padding: 10px;
+    height: 100vh;
+    overflow-y: scroll;
+}
+::-webkit-scrollbar{
+    display: none;
+}
+@media screen and (max-width: 768px){
+    table{
+        font-size: 13px;
+    }
+    .task{
+        padding-right: 0px;
+    }
+
 }
