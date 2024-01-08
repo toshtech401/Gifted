@@ -6,6 +6,7 @@ const session = require('express-session')
 const passport = require('passport')
 const passportLocalMongoose = require('passport-local-mongoose')
 const router = require('./Route/handler')
+const fileUpload = require('express-fileupload');
 const ejs = require('ejs')
 
 port = process.env.port || 9000
@@ -14,6 +15,8 @@ const app = express()
 app.use(express.json())
 app.use(express.urlencoded({extended:true}));
 app.use(express.static('public'))
+app.use(fileUpload());
+app.use("/uploads", express.static(__dirname + '/uploads'))
 
 
 app.use(session({
