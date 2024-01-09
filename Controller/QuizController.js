@@ -1,5 +1,6 @@
-const Quiz = require("../Model/Quiz.");
+const Quiz = require("../Model/Quiz");
 const UserModel = require("../Model/User");
+const UserQuiz = require("../Model/UserQuizModel");
 
 
 
@@ -24,8 +25,13 @@ const createQuestion = async (req, res)=>{
 const getAllQuestion = async (req, res)=>{
     try {
         const questions = await Quiz.find();
-        const qst = questions.map(qst => qst.toObject())
-        return res.status(200).json(qst)
+        for(var i = 0; i < questions.length; i++){
+            const id = questions[i]._id;
+            const qst = await Quiz.findById({_id:id});
+            return res.json({qst, amt:questions.length})
+        }
+        // const qst = questions.map(qst => qst.toObject())
+        // return res.status(200).json(qst)
     } catch (error) {
         console.log(error)
         return res.status(500).json({error: "Internal server error"})
@@ -53,17 +59,27 @@ const getQuestion = async (req, res)=>{
 const answeredQuestion = async (req, res)=>{
     const user = req.user
     const {chosenOption} = req.body
-    const avail_qst = await Quiz.find();
-    const p_on_correctAns = avail_qst.points;
+    const {questionId} = req.params
+
+    const avail_qst = await Quiz.findOne({_id:questionId});
+    const userQuizPoints = await UserQuiz.findOne({user : user._id})
     if(!avail_qst) return res.json({error: "Question not available right now"})
 
 
+    const p_on_correctAns = avail_qst.points;
+
+
+    // Check if choosen answer is correct
+
     if(chosenOption === avail_qst.correctAnswer){
-        user.cp = p_on_correctAns;
-        await UserModel.save();
+        userQuizPoints.QuizPoints += p_on_correctAns;
+        await userQuizPoints.save();
         return res.json({msg: "Question answered successfully"})
     }
 
+    userQuizPoints.QuizPoints += 0;
+        await userQuizPoints.save();
+        return res.json({msg: "Nothing much"})
 
 }
 

@@ -8,6 +8,7 @@ const { createCourse, getAllCourse } = require('../Controller/createCourse');
 const { updateProfile } = require('../Controller/updateProfile');
 const hasPaid = require("../MiddleWare/hasPaid")
 const { home, signUp, signIn, dashboard, gethelp, getsupport, congratulation, payment, planpage, referral, spin, coursePage, leaderBoard, quizPage, quizSelection, setting, spinWheel, createQuiz, makePayment, confirmPayment, sidebar, withdraw } = require('../Controller/Controller');
+const spintheWheel = require('../Controller/SpinController');
 
 
 
@@ -57,7 +58,7 @@ router.route('/withdrawal').post(WithdrawFunds)
 router.route('/initialize').post(initializeAndRedirect)
 router.route('/fund-wallet').post(fundWallet)
 router.route('/withdraw').get(withdraw)
-router.route('/spin-wheel').post(spinWheel)
+router.route('/spin-wheel').post(spintheWheel)
 router.route('/test').get(test)
 router.route('/create-course').post(createCourse)
 router.route('/get-course').get(getAllCourse)

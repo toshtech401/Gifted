@@ -3,17 +3,6 @@
     margin: 0%;
     box-sizing: border-box;
 }
-body{
-    width: 100%;
-    /* height: 100vh; */
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-    /* padding-top: 30px; */
-    justify-content: center;
-    align-items: center;
-}
-
 
 .top{
     display: flex;
@@ -99,17 +88,26 @@ body{
     }
 }
 .alltabs1{
-    gap: 40px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
 }
 .main{
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 10px;
 }
 .every{
     display: flex;
     flex-direction: column;
     gap: 10px;
+    width: 100%;
+    padding: 10px;
+    height: 100vh;
+    overflow-y: scroll;
+}
+::-webkit-scrollbar{
+    display: none;
 }
 .allmain{
     display: flex;

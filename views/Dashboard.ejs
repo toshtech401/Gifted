@@ -59,8 +59,9 @@
                         <h1>
                             <% if(userData.totalPoints) { %>
                                 <%=userData.totalPoints%>
-                            <% } %>
+                            <% }else{ %>
                             0
+                            <%}%>
                             <sub>SQP</sub>
                         </h1>
                     </div>
@@ -68,8 +69,9 @@
                         <h2>Referrals Earnings</h2>
                         <h1># <% if(userData.referralCommission) { %>
                             <%=userData.referralCommission%>
-                        <% } %>
-                        0
+                            <% }else{ %>
+                                0
+                            <%}%>
                     </h1>
                     </div>
                 </div>

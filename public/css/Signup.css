@@ -28,12 +28,10 @@ body{
     gap: 20px;
 }
 
-button{
-   
-}
 .inp{
-    width: 25vw;
-    height: 5vh;
+    width: 100%;
+    /* height: 5vh; */
+    padding: 5px 10px;
     border-radius: 8px;
     border: none;
     border: 1px solid #7B7373;
@@ -42,7 +40,7 @@ form{
     display: flex;
     flex-direction: column;
     gap: 40px;
-    align-items: flex-start;
+    width: 100%;
 }
 .all{
     display: flex;
@@ -88,9 +86,7 @@ label{
 }
 .ch{
     display: flex;
-    gap: 20px;
-
-    
+    gap: 20px;    
 }
 .foot{
     background-color: #5852FE;
@@ -123,4 +119,17 @@ label{
 
 }
 
+}
+
+@media screen and (max-width: 950px) {
+    .all{
+        padding: 0 3%;
+    }
+    .sign button{
+        padding: 5px 10px;
+    }
+    .list a{
+        font-size: 10px;
+        padding: 15px 0;
+    }
 }

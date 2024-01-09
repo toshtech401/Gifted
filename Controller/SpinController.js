@@ -2,16 +2,18 @@ const Points = require('../Model/Points');
 const spin = require('../Model/Spin');
 
 
-const spinWheel = async (req, res)=>{
+const spintheWheel = async (req, res)=>{
     const {score} = req.body;
     const user = req.user
 
     try {
-        const userPoints = await Points.findOne({user}) 
+        const userPoints = await Points.findOne({user:user._id})
+        if(score.length < 0) return res.json({msg:'Expected score err'})
 
         if(!userPoints){
             const newPoint = new Points({
-                points
+                points:10,
+                user
             })
             newPoint
             .save()
@@ -20,14 +22,14 @@ const spinWheel = async (req, res)=>{
                 next(error);
             });
         }
-        const newPoints = userPoints.points + score;
-        newPoints
-        .save()
-        .then()
+        userPoints.points += score;
+        userPoints.save()
+        .then(()=>{
+            res.json({msg: 'points added successfully', userPoints})
+        })
         .catch((error)=>{
             next(error);
         });
-        return res.json({msg: 'points added successfully', newPoints})
     } catch (error) {
         console.error(error)
         return res.status(500).json({msg: 'internal server error'})
@@ -35,4 +37,4 @@ const spinWheel = async (req, res)=>{
 }
 
 
-module.exports = spinWheel
+module.exports = spintheWheel
