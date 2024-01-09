@@ -82,14 +82,10 @@ const updateCourse = async(req, res)=>{
 const deleteCourse = async(req, res)=>{
     try {
         const {courseId} = req.params
-
-        // use findByIdAndDelete to delete the course
         const deletedCourse = await Product.findByIdAndDelete(courseId)
-
         if (!deletedCourse){
             return res.status(404).json({error: 'Course not found', success: false});
         }
-
         return res.json({message: "Course deleted", business: deletedCourse, success: true});
     } catch (error) {
         console.error(error);

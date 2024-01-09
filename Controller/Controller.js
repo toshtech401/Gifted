@@ -103,7 +103,11 @@ const spin = (req, res)=>{
     res.render('SpinAndWin')
 }
 const createQuiz = (req, res)=>{
-    res.render('createQuiz')
+    res.render('Create-Quiz')
+}
+
+const withdraw = (req, res)=>{
+    res.render('Withdraw')
 }
 const makePayment= (req, res)=>{
     let amount_to_pay;
@@ -148,6 +152,8 @@ const sidebar = (req, res)=>{
 }
 
 
+
+
 module.exports = {
     home,
     signUp, 
@@ -169,5 +175,6 @@ module.exports = {
     createQuiz,
     makePayment,
     confirmPayment,
-    sidebar
+    sidebar,
+    withdraw
 }

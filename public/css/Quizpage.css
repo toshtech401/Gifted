@@ -1,113 +1,73 @@
 *{
-    padding: 0%;
-    margin: 0%;
+    padding: 0;
+    margin: 0;
     box-sizing: border-box;
+}
+
+.grids{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.rad{
+    background-color: #D9D9D9;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.ques{
+    height: 30vh;
+    background-color: #D9D9D9;
+    border-radius: 10px;
+}
+
+.top{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+}
+.display{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 30px;
+    padding: 0 20px;
 }
 
 section{
     display: flex;
     gap: 30px;
-    width: 100%;
-    height: 100vh;
+}
+.display h2{
+    font-size: 25px;
+}
 
-}
-.top{
-    display: flex;
-    align-items: center;
-    /* justify-content: space-between; */
-    
-    gap: 450px;
-}
-.head{
+.text{
     display: flex;
     flex-direction: column;
-    text-align: center;
-    h2{
-
-    font-size: 25px;
-    font-weight: 600;
-    }
-    h4{
-        font-size: 12px;
-    }
-}
-.choose{
-    width: 19vw;
-    text-transform: capitalize;
+    align-items: center;
 }
 
-
-.nd{
+.top button{
     background-color: #5852FE;
-    border: 2px solid #5852FE;
-    padding: 8px 14px;
+    padding: 10px;
+    border: none;
     color: white;
     border-radius: 10px;
-    transition: 0.5s;
-    font-size: 14px;
-    width: 60vw;
-    height: 8vh;
-    &:hover{
-        color: #5852FE;
-        background-color: white;
-    }
-}
+    font-size: larger;
+    transition: ease-in-out 0.3s;
 
-.every{
-    display: flex;
-    flex-direction: column;
-    gap: 50px;
-    align-items: center;
+    &:hover{
+        background-color: white;
+        border: 2px solid #5852FE;
+        color: #5852FE;
+    }
 }
-.all{
-    display: flex;
-    flex-direction: column;
-    gap: 50px;
-    align-items: center;
-}
-.up{
-    background-color: rgb(235, 234, 234);
-    height: 35vh;
-    width: 60vw;
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.up h1{
-    font-size: 41px;
-}
-.ddown{
-    height: 10vh;
-    width: 28vw;
-    border-radius: 20px;
-    background-color: rgb(235, 234, 234);
-}
-.down{
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-}
-.dup, .dd{
-    display: flex;
-   
-    gap: 60px;
-}
-@media screen and (max-width: 768px){
+.text p{
+    font-size: larger;
     
-    .head{
-        align-items: center;
-    }
-    .choose{
-        width: 70vw;
-    }
-    .upp{
-        width: 70vw;
-    }
-    .dup, .dd{
-        gap: 20px;
-    }
-    .ddown{
-        width: 35vw;
-    }
 }

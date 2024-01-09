@@ -1,13 +1,16 @@
 const Quiz = require("../Model/Quiz.");
 const UserModel = require("../Model/User");
 
+
+
+
 const createQuestion = async (req, res)=>{
     try {
         const {question, options_a, options_b, options_c, options_d, correctAnswer, points} = req.body;
         
-        // if(!question || !options_a || !options_b || !options_c || !options_d || correctAnswer || points){
-        //     return res.status(400).json({error: "all is required"})
-        // } 
+        if(!question || !options_a || !options_b || !options_c || !options_d || correctAnswer || points){
+            return res.status(400).json({error: "all is required"})
+        } 
         const newQuestion = await Quiz.create(req.body)
         return res.redirect('/admin/create-quiz')
     } catch (error) {
@@ -54,7 +57,6 @@ const answeredQuestion = async (req, res)=>{
     const p_on_correctAns = avail_qst.points;
     if(!avail_qst) return res.json({error: "Question not available right now"})
 
-    // Check if choosen answer is correct
 
     if(chosenOption === avail_qst.correctAnswer){
         user.cp = p_on_correctAns;
@@ -106,4 +108,11 @@ const deleteQuestion = async (req, res)=>{
 }
 
 
-module.exports = {createQuestion, getAllQuestion, getQuestion, updateQuestion, deleteQuestion, answeredQuestion}
+module.exports = {
+    createQuestion, 
+    getAllQuestion, 
+    getQuestion, 
+    updateQuestion, 
+    deleteQuestion, 
+    answeredQuestion
+}
