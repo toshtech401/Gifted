@@ -1,35 +1,12 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const {Schema, model} = mongoose;
 
-const QuizSchema = new Schema({
-    question : {
-        type: String,
-    },
-   options_a : {
-        type : String,
-        required : true
-    },
-    options_b : {
-        type : String,
-        required : true
-    },
-    options_c : {
-        type : String,
-        required : true
-    },
-    options_d : {
-        type : String,
-        required : true
-    },
-    correctAnswer : {
-        type : String,
-    },
-    points : {
-        type:Number,
-        default: 0
-    }
-});
+const questionSchema = new Schema({
+    question: String,
+    options: [String],
+    correctOption: Number,
+  });
+  
+  const Question = model('Question', questionSchema);
 
-const Quiz = model("Quiz", QuizSchema)
-
-module.exports = Quiz
+module.exports = Question

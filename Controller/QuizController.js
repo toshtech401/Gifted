@@ -1,134 +1,82 @@
-const Quiz = require("../Model/Quiz");
-const UserModel = require("../Model/User");
-const UserQuiz = require("../Model/UserQuizModel");
+const Question = require("../Model/Quiz")
 
-
-
-
-const createQuestion = async (req, res)=>{
+const getQuiz = async(req, res)=>{
     try {
-        const {question, options_a, options_b, options_c, options_d, correctAnswer, points} = req.body;
-        
-        if(!question || !options_a || !options_b || !options_c || !options_d || correctAnswer || points){
-            return res.status(400).json({error: "all is required"})
-        } 
-        const newQuestion = await Quiz.create(req.body)
-        return res.redirect('/admin/create-quiz')
+      // Fetch a random question from the database
+      const randomQuestion = await Question.findOne().skip(Math.floor(Math.random() * await Question.countDocuments()));
+  
+      res.render('Quiz', { question: randomQuestion });
     } catch (error) {
-        console.log(error)
-        return res.status(500).json({error: "Internal server error"})
+      console.error(error);
+      res.status(500).send('Internal Server Error');
     }
-}
-
-
-
-const getAllQuestion = async (req, res)=>{
+  }
+  
+  const createQuiz = async(req, res)=>{
     try {
-        const questions = await Quiz.find();
-        for(var i = 0; i < questions.length; i++){
-            const id = questions[i]._id;
-            const qst = await Quiz.findById({_id:id});
-            return res.json({qst, amt:questions.length})
-        }
-        // const qst = questions.map(qst => qst.toObject())
-        // return res.status(200).json(qst)
+      const { question, options, correctOption } = req.body;
+  
+      // Convert options to an array
+      const optionsArray = options.split(',');
+  
+      const newQuestion = new Question({
+        question,
+        options: optionsArray,
+        correctOption: parseInt(correctOption, 10),
+      });
+  
+      await newQuestion.save();
+  
+      res.redirect('/quiz/admin-post');
     } catch (error) {
-        console.log(error)
-        return res.status(500).json({error: "Internal server error"})
+      console.error(error);
+      res.status(500).send('Internal Server Error');
     }
-}
-
-
-const getQuestion = async (req, res)=>{
+  };
+  
+  const adminPostQuiz = async(req, res)=>{
+    res.render("admin/create-quiz")
+  };
+  
+  const submitQuiz = async(req, res)=>{
     try {
-        const _id = req.params.id;
-        const question = await Quiz.findOne(_id)
-
-        if(!question){
-            return res.status(404).json({msg: "Question not found"})
-        }
-        return res.status(200).json(question)
-
+      const selectedOption = parseInt(req.body.answer, 10);
+  
+      // Retrieve the correct answer from the database based on the submitted question
+      const randomQuestion = await Question.findOne().skip(Math.floor(Math.random() * await Question.countDocuments()));
+      const correctOption = randomQuestion.correctOption;
+  
+      const isCorrect = selectedOption === correctOption;
+  
+      if (isCorrect) {
+        res.send('Correct!');
+      } else {
+        res.send('Incorrect. Try again!');
+      }
     } catch (error) {
-       console.log(error) 
-       return res.status(500).json({error: "Internal server error"})
+      console.error(error);
+      res.status(500).send('Internal Server Error');
     }
-}
-
-
-const answeredQuestion = async (req, res)=>{
-    const user = req.user
-    const {chosenOption} = req.body
-    const {questionId} = req.params
-
-    const avail_qst = await Quiz.findOne({_id:questionId});
-    const userQuizPoints = await UserQuiz.findOne({user : user._id})
-    if(!avail_qst) return res.json({error: "Question not available right now"})
-
-
-    const p_on_correctAns = avail_qst.points;
-
-
-    // Check if choosen answer is correct
-
-    if(chosenOption === avail_qst.correctAnswer){
-        userQuizPoints.QuizPoints += p_on_correctAns;
-        await userQuizPoints.save();
-        return res.json({msg: "Question answered successfully"})
-    }
-
-    userQuizPoints.QuizPoints += 0;
-        await userQuizPoints.save();
-        return res.json({msg: "Nothing much"})
-
-}
-
-const updateQuestion = async (req, res)=>{
+  };
+  const getNewQuiz = async(req, res)=>{
+  let currentQuestionId;
     try {
-
-        const {questionId} = req.params;
-        const questionInput = req.body;
-
-        const updatedQuiz = await Quiz.findByIdAndUpdate(
-            questionId,
-            questionInput,
-            {new:true, runValidators:true}
-        );
-
-        if(!updatedQuiz){
-            return res.status(404).json({msg: "Question not found"})
-        }
-
-        return res.status(200).json(updatedQuiz)
-        
+      // Fetch a random question ID from the database, excluding the current question ID
+      const randomQuestion = await Question.findOne({ _id: { $ne: currentQuestionId } }).skip(Math.floor(Math.random() * await Question.countDocuments()));
+      
+      currentQuestionId = randomQuestion._id;
+  
+      return res.json({ question: randomQuestion.question, options: randomQuestion.options });
     } catch (error) {
-        console.log(error)
-        return res.status(500).json({error: "Internal server error"})
+      console.error(error);
+      res.status(500).send('Internal Server Error');
     }
-}
-
-
-const deleteQuestion = async (req, res)=>{
-    try {
-        const _id = req.params.id;
-        const question = await Quiz.deleteOne({_id})
-
-        if(!question){
-            return res.status(404).json({msg: "Question not found"})
-        }
-        return res.status(201).json({msg: "question deleted successfully"})
-    } catch (error) {
-        console.log(error)
-        return res.status(500).json({error: "Internal server error"})
-    }
-}
-
+  }
 
 module.exports = {
-    createQuestion, 
-    getAllQuestion, 
-    getQuestion, 
-    updateQuestion, 
-    deleteQuestion, 
-    answeredQuestion
+    getQuiz,
+  createQuiz,
+  submitQuiz,
+  adminPostQuiz,
+  getNewQuiz,
 }

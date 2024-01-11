@@ -4,27 +4,28 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quiz | Gifted Brainz</title>
+  <title>Quiz</title>
   <script>
-
+    // JavaScript code for handling form submission
     document.addEventListener('DOMContentLoaded', function () {
       const form = document.getElementById('quizForm');
-      const submitButton = document.getElementById('submitBtn');
-
-      const submitForm = function() {
+      form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        
         const formData = new FormData(form);
 
+        // Use fetch to send the form data to the server
         fetch('/quiz/submit-quiz', {
           method: 'POST',
           body: formData,
         })
         .then(response => response.text())
         .then(result => {
-
+          // Display the result (e.g., "Correct!" or "Incorrect. Try again!")
           alert(result);
 
           // Fetch the next question and update the page
-          fetch('/quiz/next-question')
+          fetch('/quiz/take-quiz')
             .then(response => response.json())
             .then(data => {
               // Update the question content on the page
@@ -46,31 +47,10 @@
                 
                 optionsContainer.appendChild(document.createElement('br'));
               });
-
-              // Reset the timer for the next question
-              clearTimeout(timer);
-              startTimer();
             })
             .catch(error => console.error(error));
         })
         .catch(error => console.error(error));
-      };
-
-      let timer;
-      const startTimer = function() {
-        timer = setTimeout(submitForm, 30000); // 30 seconds
-      };
-
-      startTimer();
-
-      form.addEventListener('submit', function (event) {
-        event.preventDefault();
-        submitForm();
-      });
-
-      submitButton.addEventListener('click', function() {
-        clearTimeout(timer);
-        submitForm();
       });
     });
   </script>
@@ -81,12 +61,11 @@
   <form id="quizForm">
     <div id="options">
       <% for (let i = 0; i < question.options.length; i++) { %>
-        <label for="<%= i %>"></label>
-        <input type="radio" name="answer" value="<%= i %>" id="<%= i %>">
+        <input type="radio" name="answer" value="<%= i %>">
         <%= question.options[i] %><br>
       <% } %>
     </div>
-    <button type="submit" id="submitBtn">Submit</button>
+    <button type="submit">Submit</button>
   </form>
 </body>
 </html>
