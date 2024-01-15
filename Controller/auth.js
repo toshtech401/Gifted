@@ -165,7 +165,7 @@ const CreateAccount = async (req, res) => {
                         console.log(err);
                     }
                     passport.authenticate('local')(req,res, function(err){
-                        return res.redirect('/sign-in')
+                        return res.redirect('/makePayment')
                     })
                 })
 

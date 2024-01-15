@@ -10,10 +10,15 @@ body{
     display: flex;
     flex-direction: column;
     gap: 30px;
-    padding-top: 30px;
+    /* padding-top: 30px; */
     /* text-align: center; */
    
     align-items: center;
+}
+.set{
+    display: flex;
+    width: 100%;
+    gap: 50px;
 }
 
 .head{
@@ -40,6 +45,23 @@ body{
     background-color: #5852FE;
     border: 2px solid #5852FE;
     padding: 8px 14px;
+    color: #5852FE;
+    border-radius: 10px;
+    transition: 0.5s;
+    font-size: 14px;
+    width: 12vw;
+    height: 7vh;
+
+    
+    &:hover{
+        color: white;
+        background-color: #5852FE;
+    }
+}
+.ndd{
+    background-color: #5852FE;
+    border: 2px solid #5852FE;
+    padding: 8px 14px;
     color: white;
     border-radius: 10px;
     transition: 0.5s;
@@ -59,6 +81,7 @@ body{
     display: flex;
     flex-direction: column;
     gap: 50px;
+    width: 100%;
     
 }
 form{
@@ -79,6 +102,10 @@ form{
     display: flex;
     flex-direction: column;
     gap: 30px;
+    width: 50%;
+}
+.all input{
+    width: 100%;
 }
 textarea{
     outline: none;

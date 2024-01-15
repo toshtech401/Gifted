@@ -8,9 +8,7 @@ body{
     height: 100vh;
     display: flex;
     flex-direction: column;
-    gap: 50px;
-    padding-top: 60px;
-    /* justify-content: center; */
+    padding-top: 30px;
     align-items: center;
 }
 .logo{
@@ -19,7 +17,7 @@ body{
     align-items: center;
     gap: 10px;
    img{
-    width: 8vw;
+    width: 30%;
    }
 }
 .form{
@@ -94,19 +92,20 @@ label{
 .foot{
     background-color: #5852FE;
     display: flex;
-    align-items: center;
+    /* align-items: center; */
     width: 100%;
-    justify-content: center;
-    height: 15vh;
+    justify-content: space-evenly;
+    padding: 38px;
+    /* height: 15vh; */
     gap: 30px;
 }
 .list{
     display: flex;
     gap: 50px;
-    .side{
+    /* .side{
         border-right: 1px solid white;
         padding-right: 50PX;
-    }
+    } */
 }
 .sign button{
     padding: 15px 110px;
@@ -130,5 +129,8 @@ label{
     }
     .sign button{
         padding: 5px 10px;
+    }
+    .list{
+        flex-direction: column;
     }
   }

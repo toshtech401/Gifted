@@ -8,8 +8,8 @@ body{
     height: 100vh;
     display: flex;
     flex-direction: column;
-    gap: 30px;
-    padding-top: 30px;
+    gap: 20px;
+    padding-top: 10px;
     /* justify-content: center; */
     align-items: center;
 }
@@ -94,7 +94,8 @@ label{
     align-items: center;
     width: 100%;
     justify-content: center;
-    height: 10vh;
+    /* height: 10vh; */
+    padding: 40px;
     gap: 30px;
 }
 .list{
@@ -111,6 +112,7 @@ label{
     color: white;
     transition: 0.5s;
     border-radius: 6px;
+    width: 100%;
     border: 2px solid #5852FE;
     background-color: #5852FE;
 &:hover{
@@ -131,5 +133,13 @@ label{
     .list a{
         font-size: 10px;
         padding: 15px 0;
+    }
+
+    .list{
+        flex-direction: column;
+        gap: 15px;
+        .side{
+            border: none;
+        }
     }
 }

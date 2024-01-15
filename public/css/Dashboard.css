@@ -176,4 +176,7 @@ td, th{
     .earn h2{
         font-size: 20px;
     }
+    .side{
+        z-index: 999;
+    }
 }

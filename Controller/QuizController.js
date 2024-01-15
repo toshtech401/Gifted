@@ -59,18 +59,19 @@ const getQuiz = async(req, res)=>{
     }
   };
   const getNewQuiz = async(req, res)=>{
-  let currentQuestionId;
-    try {
-      // Fetch a random question ID from the database, excluding the current question ID
-      const randomQuestion = await Question.findOne({ _id: { $ne: currentQuestionId } }).skip(Math.floor(Math.random() * await Question.countDocuments()));
-      
-      currentQuestionId = randomQuestion._id;
+    let currentQuestionId; 
+    let previousQuestionId;
+  try {
+    const randomQuestion = await Question.findOne({ _id: { $nin: [currentQuestionId, previousQuestionId] } }).skip(Math.floor(Math.random() * await Question.countDocuments()));
+    
+    previousQuestionId = currentQuestionId;
+    currentQuestionId = randomQuestion._id;
   
-      return res.json({ question: randomQuestion.question, options: randomQuestion.options });
-    } catch (error) {
-      console.error(error);
-      res.status(500).send('Internal Server Error');
-    }
+    res.json({ question: randomQuestion.question, options: randomQuestion.options });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
   }
 
 module.exports = {

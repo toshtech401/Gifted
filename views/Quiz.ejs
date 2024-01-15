@@ -4,34 +4,98 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quiz</title>
-  <script>
-    // JavaScript code for handling form submission
+  <title>Quiz | Take One</title>
+  
+  <style>
+    body {
+     font-family: 'Arial', sans-serif;
+     background-color: #f5f5f5;
+     margin: 0;
+     padding: 0;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+     height: 100vh;
+   }
+
+   h1 {
+     color: #333;
+   }
+
+   #quizContainer {
+     background-color: #fff;
+     border-radius: 10px;
+     padding: 20px;
+     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+     width: 400px;
+     text-align: center;
+   }
+
+   #options input {
+     margin-right: 5px;
+   }
+
+   #submitBtn {
+     margin-top: 10px;
+     background-color: #4caf50;
+     color: #fff;
+     border: none;
+     padding: 10px 20px;
+     font-size: 16px;
+     border-radius: 5px;
+     cursor: pointer;
+   }
+
+   #submitBtn:disabled {
+     background-color: #d3d3d3;
+     cursor: not-allowed;
+   }
+
+   #submitBtn:active {
+     background-color: #45a049;
+   }
+
+   #timer {
+     margin-top: 10px;
+     font-size: 18px;
+     color: #333;
+   }
+ </style>
+
+<script>
     document.addEventListener('DOMContentLoaded', function () {
       const form = document.getElementById('quizForm');
-      form.addEventListener('submit', function (event) {
-        event.preventDefault();
-        
+      const submitButton = document.getElementById('submitBtn');
+      const timerElement = document.getElementById('timer');
+
+      let formSubmitted = false;
+
+      const submitForm = function() {
+        if (formSubmitted) {
+          return;
+        }
+
+        formSubmitted = true;
+
+        submitButton.disabled = true;
+        submitButton.textContent = 'Please wait...';
+
         const formData = new FormData(form);
 
-        // Use fetch to send the form data to the server
         fetch('/quiz/submit-quiz', {
           method: 'POST',
           body: formData,
         })
         .then(response => response.text())
         .then(result => {
-          // Display the result (e.g., "Correct!" or "Incorrect. Try again!")
           alert(result);
 
-          // Fetch the next question and update the page
-          fetch('/quiz/take-quiz')
+          fetch('/quiz/next-question')
             .then(response => response.json())
             .then(data => {
-              // Update the question content on the page
               document.getElementById('question').innerHTML = data.question;
               
-              // Update the options in the form
               const optionsContainer = document.getElementById('options');
               optionsContainer.innerHTML = '';
               data.options.forEach((option, index) => {
@@ -47,25 +111,67 @@
                 
                 optionsContainer.appendChild(document.createElement('br'));
               });
+
+              startTimer();
+
+              submitButton.disabled = false;
+              submitButton.textContent = 'Submit';
+
+              formSubmitted = false;
             })
             .catch(error => console.error(error));
         })
         .catch(error => console.error(error));
+      };
+
+      let countdown = 30;
+      let timerInterval;
+
+      const updateTimer = function() {
+        timerElement.textContent = `Time remaining: ${countdown} seconds`;
+
+        if (countdown > 0) {
+          countdown--;
+        } else {
+          submitForm();
+        }
+      };
+
+      const startTimer = function() {
+        clearInterval(timerInterval); 
+        countdown = 30;
+        updateTimer();
+        timerInterval = setInterval(updateTimer, 1000);
+      };
+
+      startTimer();
+
+      form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        submitForm();
+      });
+
+      submitButton.addEventListener('click', function() {
+        submitForm();
       });
     });
   </script>
+   
 </head>
 <body>
-  <h1>Quiz</h1>
-  <p id="question"><%= question.question %></p>
-  <form id="quizForm">
-    <div id="options">
-      <% for (let i = 0; i < question.options.length; i++) { %>
-        <input type="radio" name="answer" value="<%= i %>">
-        <%= question.options[i] %><br>
-      <% } %>
-    </div>
-    <button type="submit">Submit</button>
-  </form>
+  <div id="quizContainer">
+    <h1>Quiz</h1>
+    <p id="question"><%= question.question %></p>
+    <form id="quizForm">
+        <div id="options">
+            <% question.options.forEach((option, index) => { %>
+              <input type="radio" name="answer" value="<%= index %>">
+              <%= option %><br>
+            <% }); %>
+          </div>
+          <button type="submit" id="submitBtn">Submit</button>
+      </form>
+    <div id="timer"></div>
+  </div>
 </body>
 </html>
