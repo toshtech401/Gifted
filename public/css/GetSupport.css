@@ -6,11 +6,10 @@
 body{
     width: 100%;
  
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
-    flex-direction: column;
     gap: 20px;
-    padding-top: 30px;
+    /* padding-top: 30px; */
     /* text-align: center; */
    
     align-items: center;
@@ -41,7 +40,7 @@ body{
     background-color: #5852FE;
     border: 2px solid #5852FE;
     padding: 8px 14px;
-    color: white;
+    color: #5852FE;
     border-radius: 10px;
     transition: 0.5s;
     font-size: 14px;
@@ -51,8 +50,8 @@ body{
 
     
     &:hover{
-        color: #5852FE;
-        background-color: white;
+        color: white;
+        background-color: #5852FE;
     }
 }
 
@@ -80,12 +79,13 @@ form{
 .all{
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 15px;
 }
 textarea{
     outline: none;
     border-radius: 15px;
     background-color: #D9D9D96B;
+    height: 30vh;
 }
 
 @media screen and (max-width: 768px) {

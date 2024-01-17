@@ -78,7 +78,7 @@
 <body>
   <h1>Quiz</h1>
   <p id="question"><%= question.question %></p>
-  <form id="quizForm">
+  <form id="quizForm" method="post">
     <div id="options">
       <% for (let i = 0; i < question.options.length; i++) { %>
         <label for="<%= i %>"></label>

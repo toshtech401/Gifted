@@ -29,7 +29,7 @@ const dashboard = async(req, res)=>{
 
         const userPoints = await Points.findOne({user: user})
         const userWallet = await Wallet.findOne({user: user})
-        const referrals = await referralModel.findOne({user: user})
+        const referrals = await referralModel.findOne({user})
 
         const totalEarnings = userWallet?.current_balance;
         const totalPoints = userPoints?.points
@@ -138,10 +138,20 @@ const confirmPayment = async(req, res)=>{
 
 
     if(response.status === true){
-       const user = await UserModel.findOne({email});
+       const user = req.user
+       const referredUser = user.referredBy
        if(!user) return console.log("no user with " + email);
        user.isPaid = true;
-       user.save()
+
+       if(!referredUser){
+        await user.save()
+       }
+       const referrer = await referralModel.findById({user: referredUser})
+       console.log("referral: ", referrer);
+       referrer.referralCommission += 1000;
+       await referrer.save()
+       await user.save()
+
     }
     
 

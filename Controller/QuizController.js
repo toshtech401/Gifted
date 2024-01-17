@@ -1,16 +1,15 @@
 const Question = require("../Model/Quiz")
 
 const getQuiz = async(req, res)=>{
-    try {
-      // Fetch a random question from the database
-      const randomQuestion = await Question.findOne().skip(Math.floor(Math.random() * await Question.countDocuments()));
-  
-      res.render('Quiz', { question: randomQuestion });
-    } catch (error) {
-      console.error(error);
-      res.status(500).send('Internal Server Error');
-    }
+  try {
+    const randomQuestion = await Question.findOne().skip(Math.floor(Math.random() * await Question.countDocuments()));
+
+    res.render('quiz', { question: randomQuestion });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal Server Error');
   }
+}
   
   const createQuiz = async(req, res)=>{
     try {

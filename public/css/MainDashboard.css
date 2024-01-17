@@ -9,6 +9,12 @@
     padding: 20px;
 }
 
+.wrapper{
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
 .dash-items{
     display: flex;
     justify-content: space-between;
@@ -160,6 +166,7 @@ th{
     height: 100vh;
     display: flex;
     flex-direction: row;
+
 }
 aside{
     width: 250px;
@@ -168,16 +175,16 @@ aside{
     /* position: fixed; */
     flex-direction: column;
     overflow: hidden;
-    gap: 20px;
+    gap: 15px;
     border-right: 1px solid;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     transition: all .3s ease;
-    padding: 0 10px;
+    /* padding: 0 10px; */
     
 }
 .close-aside{
     width: 70px;
-    padding-left: 15px;
+    /* padding-left: 15px; */
     overflow: hidden;
 }
 .top-side{
@@ -187,6 +194,22 @@ aside{
     align-items: center;
     height: 10vh;
     padding: 0 10px;
+}
+
+.dashboard .item{
+    color: white;
+}
+
+.top-side .logo{
+    width: 50px;
+}
+
+.display-none{
+    display: none;
+}
+
+.bottom-side .item{
+    color: white;
 }
 .toggle{
     z-index: 1000 !important;
@@ -225,11 +248,19 @@ aside{
     /* gap: 15px; */
     text-transform: capitalize;
     /* height: 10vh; */
-    padding: 3px 0;
+    background-color: #0235EA;
+    padding: 7px 0;
 
 }
+
 .tags img{
-    width: 40%;
+    /* height: 20vh; */
+    width: 40px;
+}
+
+.dashboard img{
+    /* width: 40px; */
+    height: 40px;
 }
 .active{
     border-left: 2px solid #0235EA;
@@ -245,6 +276,7 @@ aside{
     height: 70vh;
     display: flex;
     flex-direction: column;
+    padding: 5px 10px;
     gap: 20px;
 }
 /* .bottom-side{
@@ -277,19 +309,23 @@ aside{
 }
 .bottom-side{
     width: 100%;
-    height: 20vh;
+    /* height: 20vh; */
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 0 10px;
-    gap: 20px;
+    padding:5px 10px;
+    gap: 10px;
+    background-color: #5852FE;
+    color: white;
 }
 .nav{
     display: none;
 }
 
 
-
+.toggle .item{
+    display: none;
+}
 
 
 main{

@@ -9,7 +9,7 @@ const WalletSchema = new Schema({
     },
     current_balance : {
         type: Number,
-        default: 0,
+        default: 100,
         required: true
     },
     previous_balance : {

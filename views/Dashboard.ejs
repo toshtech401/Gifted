@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
+        <title>Gifted Brainz | Dashboard</title>
         <link rel="stylesheet" href="/css/output.css">
         <link rel="stylesheet" href="/css/Dashboard.css">
         <link rel="stylesheet" href="/css/MainDashboard.css">
@@ -32,22 +32,36 @@
                  </div> -->
             </div>
             <div class="user">
-                 <h1>WELCOME, jays</h1>
+                 <h1>WELCOME, <%= userData.name %></h1>
             </div>
  
  
             <div class="airtime-area">
                  <div class="blue">
-                     <p>total earnings</p>
-                     <h1>#203,978</h1>
+                     <p>Total Earnings</p>
+                     <h1># <%= userData.totalEarnings %></h1>
                  </div>
                  <div class="green">
                      <p>Total Points</p>
-                     <h1>2000SQP</h1>
+                     <h1>
+                        <% if(userData.totalPoints) { %>
+                            <%=userData.totalPoints%>
+                        <% }else{ %>
+                        0
+                        <%}%>
+                        <sub>SQP</sub>
+                     </h1>
                  </div>
                  <div class="orange">
-                     <p>Referrals earnings</p>
-                     <h1>#200,000</h1>
+                     <p>Referrals Earnings</p>
+                     <h1>
+                        #
+                        <% if(userData.referralCommission) { %>
+                            <%=userData.referralCommission%>
+                            <% }else{ %>
+                                0
+                            <%}%>
+                     </h1>
                  </div>
             </div>
  
@@ -69,29 +83,29 @@
                              <th>Points</th>
                          </tr>
                          <tr>
-                             <td class="bundle"><img src="../images/tabler-icon-access-point.png" alt=""> Airtime Bundle</td>
-                             <td>-N20,000</td>
-                             <td>Sent</td>
+                             <td class="bundle"><img src="../images/tabler-icon-access-point.png" alt=""> what is UI/UX Design</td>
+                             <td>15</td>
+                             <td>20pts</td>
                          </tr>
                          <tr>
-                             <td class="bundle"><img src="../images/tabler-icon-id.png" alt=""> Data Bundle</td>
-                             <td>-N20,000</td>
-                             <td>Sent</td>
+                             <td class="bundle"><img src="../images/tabler-icon-id.png" alt=""> principle of design</td>
+                             <td>15</td>
+                             <td>20pts</td>
                          </tr>
                          <tr>
-                             <td class="bundle"><img src="../images/tabler-icon-access-point.png" alt=""> Airtime Bundle</td>
-                             <td>-N20,000</td>
-                             <td>Sent</td>
+                             <td class="bundle"><img src="../images/tabler-icon-access-point.png" alt=""> interaction design</td>
+                             <td>15</td>
+                             <td>20pts</td>
                          </tr>
                          <tr>
-                             <td class="bundle"><img src="../images/tabler-icon-id.png" alt=""> Data Bundle</td>
-                             <td>-N20,000</td>
-                             <td>Sent</td>
+                             <td class="bundle"><img src="../images/tabler-icon-id.png" alt=""> user research</td>
+                             <td>15</td>
+                             <td>20pts</td>
                          </tr>
                          <tr>
-                             <td class="bundle"><img src="../images/tabler-icon-access-point.png" alt=""> Airtime Bundle</td>
-                             <td>-N20,000</td>
-                             <td>Sent</td>
+                             <td class="bundle"><img src="../images/tabler-icon-access-point.png" alt=""> prototype</td>
+                             <td>15</td>
+                             <td>20pts</td>
                          </tr>
                      </div>
                  </table>

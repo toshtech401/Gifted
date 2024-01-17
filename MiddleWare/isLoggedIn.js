@@ -5,7 +5,8 @@ function isLoggedIn(req, res, next) {
     req.session.requestedUrl = req.originalUrl;
     const requestedUrl = req.originalUrl || "/dashboard";
     // res.json({"info": "your session has expired pls log in"});
-    res.redirect(`/sign-in?redirect=${requestedUrl}`);
+    // res.redirect(`/sign-in?redirect=${requestedUrl}`);
+    res.redirect("/sign-in");
   }
 
   module.exports= isLoggedIn

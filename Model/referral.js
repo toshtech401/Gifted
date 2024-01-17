@@ -4,16 +4,22 @@ const passportLocalMongoose = require('passport-local-mongoose')
 const {Schema, model} = mongoose
 
 const referralSchema = new mongoose.Schema({
-  referedBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-    referred: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-    referralCommission:{
-        type:Number,
-        default:0,
-        required: true
-    },
-    paymentMade: Boolean,
+  user:{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    required:true
   },
-  {timestamps:true}
+  referralCode: String,
+  referredUsers: [{ type: String }],
+  referralCommission: { 
+    type: Number, 
+    default: 10
+  },
+  status:{
+    type:String,
+    enum:['pending', 'completed']
+  }
+  }
   );
 
 
