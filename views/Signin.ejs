@@ -17,14 +17,14 @@
             <h2 class="font-semibold text-[20px]">Sign In</h2>
         </div>
         <form action="/sign-in" method="post">
-        <div class="form ">
+        <div class="form">
             <div>
                 <label for="">Username</label><br>
                 <input class="inp" type="text" name="username">
             </div>
             <div>
                 <label for="">Password</label><br>
-                <input class="inp" type="password" name="password">
+                <input class="inp w-full" type="password" name="password">
             </div>
             <div class="ch">
                 <input class="check" type="checkbox" name="" id="">
@@ -40,15 +40,15 @@
         </div>
         </form>
         <div class="link">
-            <p>Don't Have An Account? <a href="">Click Here....</a></p>
+            <p>Don't Have An Account? <a href="/sign-up">Click Here....</a></p>
         </div>
     </div>
     <div class="foot">
         <img width="20" src="/images/Arrow 4 (1).png" alt="">
         <div class="list text-[white] font-thin">
-            <h4 class="side">Back To Home</h4>
-            <h4 class="side">Privacy & Policy</h4>
-            <h4>Terms & Condition</h4>
+            <a href="/" class="side">Back To Home</a>
+            <a href="/privacy" class="side">Privacy & Policy</a>
+            <a href="/terms">Terms & Condition</a>
         </div>
     </div>
 </body>

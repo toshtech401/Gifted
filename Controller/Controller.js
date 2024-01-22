@@ -1,7 +1,10 @@
 const Points = require("../Model/Points")
 const UserModel = require("../Model/User")
 const Wallet = require("../Model/Wallet")
-const referralModel = require("../Model/referral")
+const referralModel = require("../Model/referral");
+
+const SECRET_KEY = process.env.SECRET_KEY
+
 require('dotenv').config()
 
 const home = (req, res)=>{
@@ -103,7 +106,23 @@ const spin = (req, res)=>{
     res.render('SpinAndWin')
 }
 const createQuiz = (req, res)=>{
-    res.render('createQuiz')
+    res.render('Create-Quiz')
+}
+
+const withdraw = async(req, res)=>{
+
+    const allBanks = await fetch("https://api.paystack.co/bank", {
+        method:"GET",
+        headers: {
+            Authorization: `Bearer ${SECRET_KEY}`
+          }
+    }).then(res => res.json())
+
+    if(allBanks.status === false) return res.status(422).json("Error while fetching banks, pls try again")
+
+
+    const banks = allBanks.data
+    return res.render('Withdraw', {banks})
 }
 const makePayment= (req, res)=>{
     let amount_to_pay;
@@ -148,6 +167,8 @@ const sidebar = (req, res)=>{
 }
 
 
+
+
 module.exports = {
     home,
     signUp, 
@@ -169,5 +190,6 @@ module.exports = {
     createQuiz,
     makePayment,
     confirmPayment,
-    sidebar
+    sidebar,
+    withdraw
 }

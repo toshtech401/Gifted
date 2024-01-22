@@ -2,10 +2,10 @@ const UserModel = require("../Model/User")
 
 
 const Admin = async(req, res)=>{
-    const userId = req.params.userId;
+  const username = req.params.username;
 
   try {
-    const user = await UserModel.findByIdAndUpdate(userId, { isAdmin: true }, { new: true });
+    const user = await UserModel.findByIdAndUpdate(username, { isAdmin: true }, { new: true }, );
 
     if (!user) {
       return res.status(404).json({ message: 'User not found' });

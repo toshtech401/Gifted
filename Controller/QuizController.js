@@ -2,6 +2,9 @@ const Quiz = require("../Model/Quiz");
 const UserModel = require("../Model/User");
 const UserQuiz = require("../Model/UserQuizModel");
 
+
+
+
 const createQuestion = async (req, res)=>{
     try {
         const {question, options_a, options_b, options_c, options_d, correctAnswer, points} = req.body;
@@ -121,4 +124,11 @@ const deleteQuestion = async (req, res)=>{
 }
 
 
-module.exports = {createQuestion, getAllQuestion, getQuestion, updateQuestion, deleteQuestion, answeredQuestion}
+module.exports = {
+    createQuestion, 
+    getAllQuestion, 
+    getQuestion, 
+    updateQuestion, 
+    deleteQuestion, 
+    answeredQuestion
+}

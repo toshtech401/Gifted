@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/Withdraw.css">
+    <!-- <link rel="stylesheet" href="/css/output.css"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gifted Brainz/Withdraw page</title>
+</head>
+<body>
+    <main>
+        <img src="/images/gifted_logo.png" alt="">
+        <h1>Widthdraw Fund</h1>
+        <form id="withdrawalForm" method="post">
+
+            <div>
+                <label for="bank">Bank:</label>
+                <select name="" id="bankSelect">
+                
+                <% banks.forEach((bank)=>{ %>
+
+                    <option value="<%= bank.code %>"> <%= bank.name %></option>
+                <% }) %>
+
+            </select>
+
+            </div>
+
+            <div class="">
+                <label for="accountNumber">Account Number</label>
+                <input class="border border-blue-300" name="accountNmber" type="text" id="accountNumber" required />
+            </div>
+            <p class="font-bold text-xs">Your funds will be sent to : <span id="beneficiary"></span> </p>
+        
+            <div>
+                <label for="amount">Amount:</label>
+                <input type="tel" id="amount" name="amount" required>
+            </div>
+            
+        
+            <button type="submit" onclick="initiateTransfer()">Withdraw</button>
+        </form>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://js.paystack.co/v1/inline.js"></script>
+    <script>
+        const inp = document.getElementById("accountNumber");
+        inp.addEventListener("input", async(e)=>{
+            const beneficiary = document.getElementById("beneficiary")
+            // const PAYSTACK_SECRET_KEY = process.env.SECRET_KEY
+            const accountNmber = e.target.value;
+            const bankSelect = document.getElementById("bankSelect");
+            const bankCode = bankSelect.value;
+            const verifybankUrl = `https://api.paystack.co/bank/resolve?account_number=${accountNmber}&bank_code=${bankCode}`;
+            try {
+            const response = await fetch(verifybankUrl, {
+                method: "GET",
+                headers: {
+                    "Authorization": "Bearer sk_test_b1ea335bbc2c211d2b8fd923c8520faa5e06000a",
+                },
+            });
+
+            const data = await response.json();
+
+            if (data.status) {
+                beneficiary.textContent = data.data.account_name;
+            } else {
+                beneficiary.textContent = "Unable to resolve account details";
+            }
+        } catch (error) {
+            console.error("Error fetching bank details:", error);
+            beneficiary.textContent = "Error fetching bank details";
+        }
+    
+    
+    })
+
+    function initiateTransfer() {
+        const amount = document.getElementById("amount").value * 100; // Convert to kobo (Paystack uses the smallest currency unit)
+        const recipientBank = document.getElementById("bankSelect").value;
+        const recipientAccountNumber = document.getElementById("accountNumber").value;
+
+        PaystackPop.setup({
+            key: 'pk_test_e44faf5fa87bcbcc326a7527dc4263d49988a2f2', // Replace with your actual public key
+            amount: amount,
+            currency: 'NGN', // Replace with your desired currency code
+            ref: '' + Math.floor((Math.random() * 1000000000) + 1),
+            metadata: {
+                custom_fields: [
+                    {
+                        display_name: "Recipient Bank",
+                        variable_name: "recipient_bank",
+                        value: recipientBank
+                    },
+                    {
+                        display_name: "Recipient Account Number",
+                        variable_name: "recipient_account_number",
+                        value: recipientAccountNumber
+                    }
+                ]
+            },
+            callback: function (response) {
+                console.log('Transfer initiated! Reference: ' + response.reference);
+
+                // Add code here to handle the response, e.g., update database, notify user, etc.
+                
+                // Redirect to dashboard or any desired page
+                window.location.href = '/dashboard';
+            },
+            onClose: function () {
+                console.log('Transfer window closed.');
+            }
+        }).openIframe();
+    }
+    // withdraw
+        // const withdrawalForm = document.getElementById('withdrawalForm');
+        // withdrawalForm.addEventListener("submit", initiateTransfer);
+
+        // function initiateTransfer() {
+        //     e.preventDefault();
+
+        //     let handler = PaystackPop.setup({
+        //         key: 'pk_test_e44faf5fa87bcbcc326a7527dc4263d49988a2f2',
+        //         amount: document.getElementById("amount").value * 100,
+        //         metadata: {
+        //             custom_fields: [
+        //                 {
+        //                     display_name: "Recipient Bank",
+        //                     variable_name: "recipient_bank",
+        //                     value: document.getElementById("bank").value
+        //                 },
+        //                 {
+        //                     display_name: "Recipient Account Number",
+        //                     variable_name: "recipient_account_number",
+        //                     value: document.getElementById("accountNumber").value
+        //                 }
+        //             ]
+        //         },
+        //         ref: '' + Math.floor((Math.random() * 1000000000) + 1),
+        //         onClose: function () {
+        //             alert('Window closed.');
+        //         },
+        //         callback: function (response) {
+        //             let message = 'Transfer initiated! Reference: ' + response.reference;
+        //             axios.post("/confirm-transfer", {
+        //                 reference: response.reference,
+        //                 email: document.getElementById("email").value,
+        //                 bank: document.getElementById("recipientBank").value,
+        //                 accountNumber: document.getElementById("recipientAccountNumber").value
+        //             }).then(response => (console.log(response.data)));
+        //             window.location.href = '/dashboard';
+        //         }
+        //     });
+
+        //     handler.openIframe();
+        // }
+    </script>
+</body>
+</html>

@@ -1,6 +1,8 @@
 const { default: axios } = require("axios");
 const Withdrawal = require('../Model/Withdraw')
 
+const SECRET_KEY = process.env.SECRET_KEY
+
 const verifyAccount = async (req, res)=>{
     const {accountName, accountNumber, bankcode} = req.body;
     const secretKey = process.env.SECRET_KEY;
@@ -111,6 +113,19 @@ const WithdrawFunds = async (req, res)=>{
     }
 }
 
+const fetchBanks = async(req, res)=>{
+
+   const allBanks = await fetch("https://api.paystack.co/bank", {
+        method:"GET",
+        headers: {
+            Authorization: `Bearer ${SECRET_KEY}`
+          }
+    }).then(res => res.json())
+
+    if(allBanks.status === false) return res.status(422).json("Error while fetching banks, pls try again")
+
+    return res.json({allBanks: allBanks.data})
+}
 
 
-module.exports = { verifyAccount, createRecipient, WithdrawFunds }
+module.exports = { verifyAccount, createRecipient, WithdrawFunds, fetchBanks }
