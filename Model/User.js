@@ -11,16 +11,9 @@ const userSchema = new Schema({
         type:String,
         required:true
     },
-    wallet : {
-        type:mongoose.Schema.ObjectId,
-        ref:'Wallet'
-    },
     password:{
         type:String,
         required:true
-    },
-    confirmPassword:{
-        type:String,
     },
     isAdmin:{
         type:Boolean,
@@ -40,12 +33,9 @@ const userSchema = new Schema({
     next_PaymentDate:{
         type:Date
     },
-    referrals:{
-        type:mongoose.Schema.ObjectId,
+    referredBy: { 
+        type: mongoose.Schema.Types.ObjectId, 
         ref: 'Referral'
-    },
-    referraL_link:{
-        type: String
     },
     plan_type:{
         type:String,

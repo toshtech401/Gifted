@@ -12,7 +12,7 @@ const baseUrl = process.env.base_url;
 
 const CreateAccount = async (req, res) => {
 
-    const { plan_type, username, password, email, confirmPassword } = req.body;
+    const { plan_type, username, password, email, confirmPassword, referralCode } = req.body;
     try {
         if (!plan_type) {
             return res.redirect("/sign-in")
@@ -31,17 +31,14 @@ const CreateAccount = async (req, res) => {
             return res.json({ error: 'User already exists. Please sign in to continue!' });
         }
 
-        const refLink = `${baseUrl}/sign-up?ref=${username}`
-
 
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(req.body.password, salt);
 
-        const {ref} = req.query;
         
 
-        if(ref){
-        const referrer = await UserModel.findOne({referralCode: ref})
+        if(referralCode){
+        const referrer = await referralModel.findOne({referralCode})
         
         if(referrer){
                 const newUser = new UserModel({
@@ -49,21 +46,18 @@ const CreateAccount = async (req, res) => {
                     username : username.toLowerCase(),
                     password: hashedPassword,
                     plan_type,
-                    referralCode:username,
+                    referralCode:username.toLowerCase(),
                     isPaid: false,
-                    referral_link: refLink
+                    referredBy : referrer._id
                 });
 
-                await referralModel.create({
-                    referedBy: referrer.username,
-                    referred: newUser._id,
-                    paymentMade: true,
-                });
+                
 
-                const commission = await referralModel.findOne({referedBy : referrer.username});
+                const commission = await referralModel.findOne({referralCode : referrer.referralCode});
 
                 if(commission){
-                    commission.referralCommission += 200;
+                    // commission.referralCommission += 200;
+                    commission.status = 'pending'
                     commission.save()
                     .then()
                     .catch((err)=>{
@@ -96,7 +90,8 @@ const CreateAccount = async (req, res) => {
 
                 const userreferral = new referralModel({
                     user: newUser._id,
-                    referralCommission: 0
+                    referralCommission: 0,
+                    referralCode
                 });
                 userreferral
                 .save()
@@ -124,9 +119,8 @@ const CreateAccount = async (req, res) => {
             username : username.toLowerCase(),
             password: hashedPassword,
             plan_type,
-            referralCode:username,
+            referralCode:username.toLowerCase(),
             isPaid: false,
-            referral_link: refLink
         });
 
         const userWallet = new Wallet({
@@ -152,7 +146,8 @@ const CreateAccount = async (req, res) => {
 
         const userreferral = new referralModel({
             user: newUser._id,
-            referralCommission:0
+            referralCommission:0,
+            referralCode
         });
         userreferral
         .save()
@@ -171,7 +166,7 @@ const CreateAccount = async (req, res) => {
 
     }catch (error) {
         console.error('Error in CreateAccount:', error);
-        res.json({ error});
+        res.json({ error : `Error in CreateAccount: ${error}`});
         }
 }
 const test = (req,res)=>{

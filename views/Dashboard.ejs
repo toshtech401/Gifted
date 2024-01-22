@@ -3,9 +3,10 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
+        <title>Gifted Brainz | Dashboard</title>
         <link rel="stylesheet" href="/css/output.css">
         <link rel="stylesheet" href="/css/Dashboard.css">
+        <link rel="stylesheet" href="/css/MainDashboard.css">
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="stylesheet" href="/css/Sidebar.css">
@@ -18,114 +19,98 @@
 <body>
     <section class="flex dash-section">
         <div class="side">
-            <%-include('sidebar')%>
+            <%-include('MainDashboard')%>
         </div>
-        <div class="all">
-            <div class="up">
-             <div class="dash flex w-full items-center justify-between">
-                <div class="flex lg:w-[5%] dashboard"><h1 class="fgg text-[20px] font-semibold">Dashboard</h1></div>
-                <div class="flex-left flex items-center lg:w-[60%]">
-                    <div class=" border-[2px] rounded-[20px] flex items-center px-[20px]">
-                        <input class="input w-[40vw]  outline-none border-none bg-none" type="text">
-                        <i class='bx bx-search'></i>
-                    </div>
-                    <div class="ghy flex items-center gap-[30px]">
-                        <i class='bx bx-bell ' ></i>
-                        <img width="60" src="/images/Ellipse 17 (5).png" alt="">
-                    </div>
-                </div>
+        <main>
+            <div class="dashboard-main-top">
+                 <h1>Dashboard</h1>
+                 <!-- <div class="input-bar">
+                     
+                     <div class="profile-picture">
+                         <img src="../images/Frame 12.png" alt="profile-picture">
+                     </div>
+                 </div> -->
             </div>
-            <!-- I am coming back to this... -->
-            <!-- <div class="w-full flex flex-row justify-between">
-                <div class="w-[20%]">
-                    <h1>Dashboard</h1>
-                </div>
-                <div class="flex gap-sm">
-                    <div class="flex gap-2">
-                        <input class="p-2 " type="text" name="" id="">
-                        <i><i class='bx bx-search'></i></i>
-                    </div>
-                </div>
-            </div> -->
-            <div class="wel">
-                <div><h1 class="text-[30px] font-semibold">Welcome, <%= userData.name %></h1></div>
-                <div class="tab flex">
-                    <div class="tote">
-                        <h2>Total Earnings</h2>
-                        <h1># <%= userData.totalEarnings %></h1>
-                    </div>
-                    <div class="tot">
-                        <h2>Total Points</h2>
-                        <h1>
-                            <% if(userData.totalPoints) { %>
-                                <%=userData.totalPoints%>
-                            <% }else{ %>
-                            0
-                            <%}%>
-                            <sub>SQP</sub>
-                        </h1>
-                    </div>
-                    <div class="ref">
-                        <h2>Referrals Earnings</h2>
-                        <h1># <% if(userData.referralCommission) { %>
+            <div class="user">
+                 <h1>WELCOME, <%= userData.name %></h1>
+            </div>
+ 
+ 
+            <div class="airtime-area">
+                 <div class="blue">
+                     <p>Total Earnings</p>
+                     <h1># <%= userData.totalEarnings %></h1>
+                 </div>
+                 <div class="green">
+                     <p>Total Points</p>
+                     <h1>
+                        <% if(userData.totalPoints) { %>
+                            <%=userData.totalPoints%>
+                        <% }else{ %>
+                        0
+                        <%}%>
+                        <sub>SQP</sub>
+                     </h1>
+                 </div>
+                 <div class="orange">
+                     <p>Referrals Earnings</p>
+                     <h1>
+                        #
+                        <% if(userData.referralCommission) { %>
                             <%=userData.referralCommission%>
                             <% }else{ %>
                                 0
                             <%}%>
-                    </h1>
-                    </div>
-                </div>
+                     </h1>
+                 </div>
             </div>
+ 
+            <div class="airtime-area">
+                 
+            
+             </div>
+ 
+            <div class="history">
+                 <h1>ALL HISTORY</h1>
             </div>
-            <div class="earn">
-                <div><h2 class=" font-bold text-[20px]">Earning History</h2></div>
-                <table>
-                    <tr>
-                        <th></th>
-                        <th class="task">Task</th>
-                        <th class="fif">Total Answered</th>
-                        <th>Points</th>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td class="task">What is UI/UX Design</td>
-                        <td class="fif" >15</td>
-                        <td>20pts</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td class="task">Principle Of Design</td>
-                        <td class="fif">15</td>
-                        <td>10pts</td> 
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td class="task">Interaction Design</td>
-                        <td class="fif">15</td>
-                        <td>20pts</td> 
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td class="task">User Research</td>
-                        <td class="fif">15</td>
-                        <td>50pts</td> 
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td class="task">Prototype</td>
-                        <td class="fif">15</td>
-                        <td>40pts</td> 
-                    </tr>
-                    <tr>
-                        <td>6</td>
-                        <td>Data Analysis</td>
-                        <td class="fif">15</td>
-                        <td>50pts</td> 
-                    </tr>
-                   
-                </table>
+ 
+            <div class="history-table">
+                 <table>
+                     <div>
+                         <tr>
+                             <th>Task</th>
+                             <th>Total Answered</th>
+                             <th>Points</th>
+                         </tr>
+                         <tr>
+                             <td class="bundle"><img src="../images/tabler-icon-access-point.png" alt=""> what is UI/UX Design</td>
+                             <td>15</td>
+                             <td>20pts</td>
+                         </tr>
+                         <tr>
+                             <td class="bundle"><img src="../images/tabler-icon-id.png" alt=""> principle of design</td>
+                             <td>15</td>
+                             <td>20pts</td>
+                         </tr>
+                         <tr>
+                             <td class="bundle"><img src="../images/tabler-icon-access-point.png" alt=""> interaction design</td>
+                             <td>15</td>
+                             <td>20pts</td>
+                         </tr>
+                         <tr>
+                             <td class="bundle"><img src="../images/tabler-icon-id.png" alt=""> user research</td>
+                             <td>15</td>
+                             <td>20pts</td>
+                         </tr>
+                         <tr>
+                             <td class="bundle"><img src="../images/tabler-icon-access-point.png" alt=""> prototype</td>
+                             <td>15</td>
+                             <td>20pts</td>
+                         </tr>
+                     </div>
+                 </table>
             </div>
-        </div>
+         </main>
     
     </section>
 </body>

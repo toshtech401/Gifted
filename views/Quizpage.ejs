@@ -1,50 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="/css/Quizpage.css">
-    <link rel="stylesheet" href="/css/output.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz | Gifted Brainz</title>
+  <script>
+
+    document.addEventListener('DOMContentLoaded', function () {
+      const form = document.getElementById('quizForm');
+      const submitButton = document.getElementById('submitBtn');
+
+      const submitForm = function() {
+        const formData = new FormData(form);
+
+        fetch('/quiz/submit-quiz', {
+          method: 'POST',
+          body: formData,
+        })
+        .then(response => response.text())
+        .then(result => {
+
+          alert(result);
+
+          // Fetch the next question and update the page
+          fetch('/quiz/next-question')
+            .then(response => response.json())
+            .then(data => {
+              // Update the question content on the page
+              document.getElementById('question').innerHTML = data.question;
+              
+              // Update the options in the form
+              const optionsContainer = document.getElementById('options');
+              optionsContainer.innerHTML = '';
+              data.options.forEach((option, index) => {
+                const radio = document.createElement('input');
+                radio.type = 'radio';
+                radio.name = 'answer';
+                radio.value = index;
+                optionsContainer.appendChild(radio);
+                
+                const label = document.createElement('label');
+                label.textContent = option;
+                optionsContainer.appendChild(label);
+                
+                optionsContainer.appendChild(document.createElement('br'));
+              });
+
+              // Reset the timer for the next question
+              clearTimeout(timer);
+              startTimer();
+            })
+            .catch(error => console.error(error));
+        })
+        .catch(error => console.error(error));
+      };
+
+      let timer;
+      const startTimer = function() {
+        timer = setTimeout(submitForm, 30000); // 30 seconds
+      };
+
+      startTimer();
+
+      form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        submitForm();
+      });
+
+      submitButton.addEventListener('click', function() {
+        clearTimeout(timer);
+        submitForm();
+      });
+    });
+  </script>
 </head>
 <body>
-    <section>
-        <div>
-            <%-include ('sidebar') %>
-        </div>
-
-        <div class="display">
-            <div class="text">
-                <h2>Question 1-15</h2>
-                <p>Note: Choose Your Answer Below And Press Continue Once Done.</p>
-            </div>
-            <form class="top">
-                <div>
-                    <div class="ques"></div>
-                </div>
-                <div class="grids">
-                    <div class="rad">
-                        <input type="radio" name="" id="" value="<%=">
-                    </div>
-                    <div class="rad">
-                        <input type="radio" name="" id="">
-                    </div>
-                    <div class="rad">
-                        <input type="radio" name="" id="">
-                    </div>
-                    <div class="rad">
-                        <input type="radio" name="" id="">
-                    </div>
-                </div>
-
-                <button type="submit">Submit</button>
-            </form>
-        </div>
-        
-    </section>
+  <h1>Quiz</h1>
+  <p id="question"><%= question.question %></p>
+  <form id="quizForm" method="post">
+    <div id="options">
+      <% for (let i = 0; i < question.options.length; i++) { %>
+        <label for="<%= i %>"></label>
+        <input type="radio" name="answer" value="<%= i %>" id="<%= i %>">
+        <%= question.options[i] %><br>
+      <% } %>
+    </div>
+    <button type="submit" id="submitBtn">Submit</button>
+  </form>
 </body>
 </html>

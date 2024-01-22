@@ -9,8 +9,13 @@ body{
     display: flex;
     flex-direction: column;
     gap: 30px;
-    padding-top: 30px;
     text-align: center;
+    align-items: center;
+}
+.set{
+    display: flex;
+    width: 100%;
+    gap: 50px;
     align-items: center;
 }
 
@@ -74,5 +79,11 @@ body{
     .nd{
         width: 100%;
         padding: 15px 35px;
+    }
+    .allbtns{
+        flex-direction: column;
+    }
+    .choose{
+        width: 100%;
     }
 }

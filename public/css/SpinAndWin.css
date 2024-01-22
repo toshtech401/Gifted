@@ -25,6 +25,8 @@ body{
     display: flex;
     flex-direction: column;
     text-align: center;
+    align-items: center;
+    justify-content: center;
     h2{
 
     font-size: 25px;
@@ -35,7 +37,7 @@ body{
     }
 }
 .choose{
-    width: 19vw;
+    width: 70%;
     text-transform: capitalize;
 }
 
@@ -106,7 +108,28 @@ body{
    
     gap: 60px;
 }
+.set{
+    display: flex;
+    width: 100%;
+    gap: 50px;
+    align-items: center;
+}
 .btn{
     display: flex;
     gap: 30px;
+}
+
+@media screen and (max-width:950px) {
+    .btn{
+        flex-direction: column;
+    }
+    .nd{
+        width: 100%;
+    }
+    .st{
+        width: 100%;
+    }
+    .upp{
+        width: 100%;
+    }
 }
